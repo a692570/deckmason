@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Grid Systems Still Matter - Swiss Modern Preset</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Nunito:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#fdfdfd;--bg-secondary:#f7f7f7;--text-primary:#0a0a0a;--text-secondary:#4a4a4a;--text-muted:#767676;--accent:#ff3300;--grid:rgba(0,0,0,.04);--border:rgba(0,0,0,.08);--font-display:'Archivo',sans-serif;--font-body:'Nunito',sans-serif;--font-mono:'JetBrains Mono',monospace;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--bg-primary)}
+body{font-family:var(--font-body);color:var(--text-primary);background:var(--bg-primary);overflow-x:hidden}
+.stage{width:100vw;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.canvas-wrap{width:1920px;height:1080px;transform-origin:center center;position:relative;flex-shrink:0}
+.slide{width:1920px;height:1080px;position:absolute;top:0;left:0;overflow:hidden;scroll-snap-align:start;display:none;flex-direction:column;padding:clamp(60px,5vw,100px) clamp(80px,6vw,140px)}
+.slide.active{display:flex}
+.reveal{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease-out-expo),transform .5s var(--ease-out-expo)}
+.slide:not(.active) .reveal{opacity:0;transform:translateY(20px)}
+.slide.active .reveal{opacity:1;transform:translateY(0)}
+.slide.active .reveal:nth-child(2){transition-delay:.08s}.slide.active .reveal:nth-child(3){transition-delay:.16s}.slide.active .reveal:nth-child(4){transition-delay:.24s}.slide.active .reveal:nth-child(5){transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal *{transition:none!important;animation:none!important}.slide:not(.active) .reveal{opacity:1!important;transform:none!important}}
+h1{font-family:var(--font-display);font-weight:800;font-size:clamp(56px,5vw,88px);line-height:1.05;letter-spacing:-.025em}
+h2{font-family:var(--font-display);font-weight:800;font-size:clamp(40px,3.8vw,64px);line-height:1.1;letter-spacing:-.02em}
+h3{font-family:var(--font-display);font-weight:600;font-size:clamp(24px,2.2vw,36px);line-height:1.2}
+p,li{font-family:var(--font-body);font-weight:400;font-size:clamp(22px,1.8vw,30px);line-height:1.55;color:var(--text-secondary)}
+.eyebrow{font-family:var(--font-mono);font-size:clamp(14px,1vw,16px);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(24px,2vw,40px)}
+.eyebrow::before{content:"";display:inline-block;width:8px;height:8px;background:var(--accent);margin-right:12px;vertical-align:middle}
+.slide-cover{background:var(--bg-primary);justify-content:center}
+.slide-cover .cover-eyebrow{font-family:var(--font-mono);font-size:clamp(14px,1vw,16px);letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:clamp(28px,2.5vw,48px)}
+.slide-cover h1{max-width:1300px;margin-bottom:clamp(24px,2vw,40px)}
+.slide-cover .subtitle{font-size:clamp(24px,2vw,32px);color:var(--text-secondary);max-width:1000px;line-height:1.4}
+.slide-cover .footer-hint{position:absolute;bottom:clamp(40px,3.5vw,60px);right:clamp(80px,6vw,140px);font-family:var(--font-mono);font-size:14px;color:var(--text-muted)}
+.slide-content{background:var(--bg-secondary)}
+.content-list{list-style:none;padding:0;margin-top:clamp(32px,3vw,56px)}
+.content-list li{position:relative;padding-left:clamp(36px,3vw,48px);margin-bottom:clamp(20px,1.8vw,32px);color:var(--text-primary);font-size:clamp(22px,1.8vw,30px);line-height:1.45;font-weight:600}
+.content-list li::before{content:"";position:absolute;left:0;top:.4em;width:16px;height:2px;background:var(--accent)}
+.slide-comparison{background:var(--bg-primary)}
+.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,4vw,80px);margin-top:clamp(32px,3vw,56px);width:100%}
+.comparison-col h3{font-family:var(--font-mono);font-size:clamp(16px,1.3vw,20px);font-weight:500;text-transform:uppercase;letter-spacing:.1em;margin-bottom:clamp(20px,2vw,32px);padding-bottom:clamp(12px,1vw,16px);border-bottom:2px solid var(--text-primary)}
+.comparison-col:nth-child(1) h3{color:var(--text-muted)}
+.comparison-col:nth-child(2) h3{color:var(--accent)}
+.comparison-col ul{list-style:none;padding:0}
+.comparison-col li{font-size:clamp(20px,1.6vw,26px);line-height:1.5;margin-bottom:clamp(14px,1.2vw,20px)}
+.comparison-col:nth-child(1) li{color:var(--text-muted)}
+.comparison-col:nth-child(2) li{color:var(--text-primary);font-weight:600}
+.slide-big-number{background:var(--bg-primary);justify-content:center;align-items:flex-start}
+.big-number{font-family:var(--font-display);font-weight:800;font-size:clamp(140px,14vw,240px);line-height:1;color:var(--accent);letter-spacing:-.04em;margin-bottom:clamp(24px,2vw,40px)}
+.big-number-label{font-family:var(--font-mono);font-size:clamp(14px,1vw,16px);color:var(--text-muted);margin-top:clamp(16px,1.5vw,24px)}
+.slide-closing{background:var(--bg-primary);justify-content:center}
+.slide-closing h2{max-width:1200px;margin-bottom:clamp(28px,2.5vw,44px)}
+.slide-closing .cta-text{font-size:clamp(22px,1.8vw,30px);color:var(--text-secondary);max-width:900px;line-height:1.45;margin-bottom:clamp(32px,3vw,56px)}
+.slide-closing .cta-box{display:inline-block;padding:clamp(16px,1.5vw,24px) clamp(32px,3vw,48px);background:var(--accent);color:var(--bg-primary);font-family:var(--font-display);font-weight:800;font-size:clamp(22px,1.8vw,28px);border-radius:0}
+.nav-controls{position:fixed;bottom:24px;right:24px;display:flex;gap:8px;z-index:100}
+.nav-btn{width:44px;height:44px;border:1px solid var(--border);background:rgba(253,253,253,.92);color:var(--text-primary);border-radius:0;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
+.nav-btn:hover{background:var(--bg-secondary);border-color:var(--accent)}
+.nav-counter{display:flex;align-items:center;padding:0 16px;border:1px solid var(--border);background:rgba(253,253,253,.92);border-radius:0;font-family:var(--font-mono);font-size:14px;color:var(--text-secondary);min-width:80px;justify-content:center}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:100;transition:width .3s var(--ease-out-expo)}
+#speaker-notes{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(253,253,253,.97);color:#0a0a0a;font:16px/1.6 'Nunito',sans-serif;padding:20px 32px;z-index:9999;border-top:2px solid rgba(255,51,0,.3);max-height:30vh;overflow-y:auto}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress" style="width:20%"></div>
+<div class="stage" id="stage"><div class="canvas-wrap" id="canvas">
+<section class="slide slide-cover active" data-slide="1" data-screen-label="01 Cover">
+<div class="cover-eyebrow reveal">A Design Talk - Swiss Modern Preset</div>
+<h1 class="reveal">Grid systems still matter because human attention is not infinite</h1>
+<p class="subtitle reveal">Why the 12-column grid, born in 1961, remains the most powerful design constraint in 2026.</p>
+<div class="footer-hint reveal">Press N for speaker notes - Arrow keys to navigate</div>
+</section>
+<section class="slide slide-content" data-slide="2" data-screen-label="02 Principle">
+<div class="eyebrow reveal">The core argument</div>
+<h2 class="reveal">A grid is a constraint that creates freedom</h2>
+<ul class="content-list reveal">
+<li>Without a grid, every decision is ad hoc, every alignment is arbitrary, every spacing is a debate</li>
+<li>With a grid, 80% of layout decisions are pre-made, and the remaining 20% get deliberate attention</li>
+<li>The grid is not a limitation. It is a budget for creative attention</li>
+</ul>
+</section>
+<section class="slide slide-comparison" data-slide="3" data-screen-label="03 Comparison">
+<div class="eyebrow reveal">Two design philosophies</div>
+<h2 class="reveal">Improvised layout vs gridded layout</h2>
+<div class="comparison-grid reveal">
+<div class="comparison-col">
+<h3>Improvised</h3>
+<ul>
+<li>Every slide is a new design problem</li>
+<li>Alignment is eyeballed, not measured</li>
+<li>Spacing varies by feel, not by system</li>
+<li>Inconsistency reads as unprofessional</li>
+<li>Time spent on layout, not on content</li>
+</ul>
+</div>
+<div class="comparison-col">
+<h3>Gridded</h3>
+<ul>
+<li>One grid system, applied to every slide</li>
+<li>Alignment is structural, not decorative</li>
+<li>Spacing follows a defined scale</li>
+<li>Consistency reads as intentional</li>
+<li>Time spent on content, not on layout</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide slide-big-number" data-slide="4" data-screen-label="04 Stat">
+<div class="eyebrow reveal">The evidence</div>
+<div class="big-number reveal">8pt</div>
+<h2 class="reveal">the base unit that governs every spacing decision in a disciplined system</h2>
+<div class="big-number-label reveal">All padding, margins, gaps, and type sizes are multiples of 8. No exceptions.</div>
+</section>
+<section class="slide slide-closing" data-slide="5" data-screen-label="05 CTA">
+<div class="eyebrow reveal">What to do Monday</div>
+<h2 class="reveal">Stop improvising. Start gridding.</h2>
+<p class="cta-text reveal">Pick a 12-column grid. Choose an 8pt spacing scale. Apply them to every slide. Spend the time you save on the content, not the layout.</p>
+<div class="reveal"><span class="cta-box">Define your grid</span></div>
+</section>
+</div></div>
+<div class="nav-controls"><button class="nav-btn" id="prev">&#8592;</button><div class="nav-counter" id="counter">1 / 5</div><button class="nav-btn" id="next">&#8594;</button></div>
+<div id="speaker-notes"></div>
+<script>
+(function(){var s=document.querySelectorAll('.slide'),t=s.length,c=0,k=document.getElementById('canvas'),n=document.getElementById('counter'),p=document.getElementById('progress'),o=document.getElementById('speaker-notes'),v=false;var N={1:"This deck uses the Swiss Modern preset: neutral+accent harmony, neutral temperature. Color theory: white bg L99, red accent L50, 60-30-10 ratio. The accent is used only for display headings and CTAs (large text, 3:1+ contrast).",2:"Swiss Modern uses Archivo 800 for display and Nunito for body. The contrast is in weight, not just size. Bold black type on white is the core Swiss aesthetic.",3:"The comparison uses a 2px bottom border (not a rounded card) for column headers. No shadows, no rounded corners. Hard edges only. This is the Swiss discipline.",4:"The number 8pt fills the canvas in red. Everything else is muted. The 60-30-10 rule: 60% white, 30% black text, 10% red accent. The accent appears only on the number and the eyebrow.",5:"The CTA has no border radius. Sharp corners. Red on white. The Swiss Modern preset never uses rounded corners. Form follows function."};function u(i){o.textContent=N[i+1]||''}function g(i){if(i<0||i>=t)return;s[c].classList.remove('active');c=i;s[c].classList.add('active');n.textContent=(c+1)+' / '+t;p.style.width=((c+1)/t*100)+'%';u(c);try{localStorage.setItem('dm-swiss-modern',String(c))}catch(e){}}function nx(){g(c+1)}function pv(){g(c-1)}document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nx()}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();pv()}if(e.key==='n'||e.key==='N'){v=!v;o.style.display=v?'block':'none';if(v)u(c)}});var sx=0;document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',function(e){var d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>50){if(d>0)nx();else pv()}},{passive:true});document.getElementById('next').addEventListener('click',nx);document.getElementById('prev').addEventListener('click',pv);try{var sv=parseInt(localStorage.getItem('dm-swiss-modern')||'0',10);if(sv>0&&sv<t){g(sv)}else{u(0)}}catch(e){u(0)}function sc(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080);k.style.transform='scale('+s+')'}sc();window.addEventListener('resize',sc)})();
+</script>
+</body>
+</html>

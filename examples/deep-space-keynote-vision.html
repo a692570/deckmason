@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Next Decade of AI - Deep Space Preset</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#030712;--bg-secondary:#111827;--text-primary:#f9fafb;--text-secondary:#9ca3af;--text-muted:#7b8294;--accent:#818cf8;--accent-secondary:#c084fc;--border:rgba(255,255,255,.08);--font-display:'Space Grotesk',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'JetBrains Mono',monospace;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--bg-primary)}
+body{font-family:var(--font-body);color:var(--text-primary);background:var(--bg-primary);overflow-x:hidden}
+.stage{width:100vw;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.canvas-wrap{width:1920px;height:1080px;transform-origin:center center;position:relative;flex-shrink:0}
+.slide{width:1920px;height:1080px;position:absolute;top:0;left:0;overflow:hidden;scroll-snap-align:start;display:none;flex-direction:column;padding:clamp(60px,5vw,100px) clamp(80px,6vw,140px)}
+.slide.active{display:flex}
+.reveal{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease-out-expo),transform .5s var(--ease-out-expo)}
+.slide:not(.active) .reveal{opacity:0;transform:translateY(20px)}
+.slide.active .reveal{opacity:1;transform:translateY(0)}
+.slide.active .reveal:nth-child(2){transition-delay:.08s}.slide.active .reveal:nth-child(3){transition-delay:.16s}.slide.active .reveal:nth-child(4){transition-delay:.24s}.slide.active .reveal:nth-child(5){transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal *{transition:none!important;animation:none!important}.slide:not(.active) .reveal{opacity:1!important;transform:none!important}}
+h1{font-family:var(--font-display);font-weight:700;font-size:clamp(48px,4.5vw,80px);line-height:1.08;letter-spacing:-.02em}
+h2{font-family:var(--font-display);font-weight:600;font-size:clamp(36px,3.5vw,56px);line-height:1.15;letter-spacing:-.015em}
+p,li{font-family:var(--font-body);font-weight:400;font-size:clamp(22px,1.8vw,30px);line-height:1.55;color:var(--text-secondary)}
+.eyebrow{font-family:var(--font-mono);font-size:clamp(14px,1vw,16px);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(24px,2vw,40px)}
+.eyebrow::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:12px;vertical-align:middle}
+.slide-cover{background:var(--bg-primary);justify-content:center}
+.slide-cover .cover-eyebrow{font-family:var(--font-mono);font-size:clamp(14px,1vw,16px);letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:clamp(28px,2.5vw,48px)}
+.slide-cover h1{max-width:1200px;margin-bottom:clamp(24px,2vw,40px)}
+.slide-cover .subtitle{font-size:clamp(22px,1.8vw,30px);color:var(--text-secondary);max-width:900px;line-height:1.45}
+.slide-cover .footer-hint{position:absolute;bottom:clamp(40px,3.5vw,60px);right:clamp(80px,6vw,140px);font-family:var(--font-mono);font-size:14px;color:var(--text-muted)}
+.slide-big-number{background:var(--bg-primary);justify-content:center;align-items:flex-start}
+.big-number{font-family:var(--font-display);font-weight:700;font-size:clamp(140px,14vw,240px);line-height:1;color:var(--accent);letter-spacing:-.04em;margin-bottom:clamp(24px,2vw,40px)}
+.big-number-label{font-family:var(--font-mono);font-size:clamp(14px,1vw,16px);color:var(--text-muted);margin-top:clamp(16px,1.5vw,24px)}
+.slide-content{background:var(--bg-secondary)}
+.content-list{list-style:none;padding:0;margin-top:clamp(32px,3vw,56px)}
+.content-list li{position:relative;padding-left:clamp(36px,3vw,48px);margin-bottom:clamp(20px,1.8vw,32px);color:var(--text-primary);font-size:clamp(22px,1.8vw,30px);line-height:1.45}
+.content-list li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:12px;border:2px solid var(--accent);border-radius:2px;transform:rotate(45deg)}
+.content-list li strong{color:var(--accent-secondary);font-weight:600}
+.slide-quote{background:var(--bg-primary);justify-content:center;align-items:center;text-align:center}
+.slide-quote blockquote{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,3vw,48px);line-height:1.3;max-width:1300px;color:var(--text-primary)}
+.slide-quote blockquote::before{content:"";display:block;width:48px;height:3px;background:var(--accent);margin:0 auto clamp(32px,3vw,48px)}
+.slide-quote .attribution{margin-top:clamp(28px,2.5vw,44px);font-family:var(--font-mono);font-size:clamp(14px,1.1vw,18px);color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase}
+.slide-closing{background:var(--bg-primary);justify-content:center}
+.slide-closing h2{max-width:1100px;margin-bottom:clamp(28px,2.5vw,44px)}
+.slide-closing .cta-text{font-size:clamp(22px,1.8vw,30px);color:var(--text-secondary);max-width:900px;line-height:1.45;margin-bottom:clamp(32px,3vw,56px)}
+.slide-closing .cta-box{display:inline-block;padding:clamp(16px,1.5vw,24px) clamp(32px,3vw,48px);background:var(--accent);color:var(--bg-primary);font-family:var(--font-display);font-weight:600;font-size:clamp(22px,1.8vw,28px);border-radius:4px}
+.nav-controls{position:fixed;bottom:24px;right:24px;display:flex;gap:8px;z-index:100}
+.nav-btn{width:44px;height:44px;border:1px solid var(--border);background:rgba(3,7,18,.92);color:var(--text-primary);border-radius:4px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
+.nav-btn:hover{background:rgba(129,140,248,.12);border-color:var(--accent)}
+.nav-counter{display:flex;align-items:center;padding:0 16px;border:1px solid var(--border);background:rgba(3,7,18,.92);border-radius:4px;font-family:var(--font-mono);font-size:14px;color:var(--text-secondary);min-width:80px;justify-content:center}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:100;transition:width .3s var(--ease-out-expo)}
+#speaker-notes{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(3,7,18,.97);color:#f9fafb;font:16px/1.6 'DM Sans',sans-serif;padding:20px 32px;z-index:9999;border-top:2px solid rgba(129,140,248,.3);max-height:30vh;overflow-y:auto}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress" style="width:20%"></div>
+<div class="stage" id="stage"><div class="canvas-wrap" id="canvas">
+<section class="slide slide-cover active" data-slide="1" data-screen-label="01 Cover">
+<div class="cover-eyebrow reveal">A Vision Talk - Deep Space Preset</div>
+<h1 class="reveal">The next decade of AI will be built on constraints, not compute</h1>
+<p class="subtitle reveal">Why the companies that win the 2030s will optimize for efficiency, trust, and specificity rather than raw model size.</p>
+<div class="footer-hint reveal">Press N for speaker notes - Arrow keys to navigate</div>
+</section>
+<section class="slide slide-big-number" data-slide="2" data-screen-label="02 Stat">
+<div class="eyebrow reveal">The scaling wall</div>
+<div class="big-number reveal">100x</div>
+<h2 class="reveal">more compute for only 2x better performance</h2>
+<div class="big-number-label reveal">The diminishing returns curve of raw model scaling, 2024-2026</div>
+</section>
+<section class="slide slide-content" data-slide="3" data-screen-label="03 Shift">
+<div class="eyebrow reveal">Three tectonic shifts</div>
+<h2 class="reveal">Where the value migrates next</h2>
+<ul class="content-list reveal">
+<li><strong>From parameters to data quality</strong>: curated, domain-specific data beats raw internet scale</li>
+<li><strong>From general to specific</strong>: vertical models that know one thing deeply beat horizontal models that know everything shallowly</li>
+<li><strong>From inference to evaluation</strong>: the bottleneck moves from generating answers to knowing which answers are correct</li>
+</ul>
+</section>
+<section class="slide slide-quote" data-slide="4" data-screen-label="04 Quote">
+<blockquote class="reveal">The future of AI is not a bigger brain. It is a more disciplined one.</blockquote>
+<div class="attribution reveal">The Constraint Thesis</div>
+</section>
+<section class="slide slide-closing" data-slide="5" data-screen-label="05 CTA">
+<div class="eyebrow reveal">The opportunity</div>
+<h2 class="reveal">Build for the constraint, not the capability.</h2>
+<p class="cta-text reveal">The next wave of AI companies will not be the ones with the most GPUs. They will be the ones with the best data, the tightest feedback loops, and the deepest domain expertise.</p>
+<div class="reveal"><span class="cta-box">Start specific</span></div>
+</section>
+</div></div>
+<div class="nav-controls"><button class="nav-btn" id="prev">&#8592;</button><div class="nav-counter" id="counter">1 / 5</div><button class="nav-btn" id="next">&#8594;</button></div>
+<div id="speaker-notes"></div>
+<script>
+(function(){var s=document.querySelectorAll('.slide'),t=s.length,c=0,k=document.getElementById('canvas'),n=document.getElementById('counter'),p=document.getElementById('progress'),o=document.getElementById('speaker-notes'),v=false;var N={1:"This deck uses the Deep Space preset: analogous harmony (blue-purple), cool temperature. Color theory: near-black bg L4, indigo accent L74, 60-30-10 ratio.",2:"100x compute for 2x improvement. This is the scaling wall. The number fills the canvas as the dominant visual element, everything else recedes.",3:"Three shifts. Notice the diamond bullet markers (rotated squares) instead of circles. This is the Deep Space preset's signature element.",4:"Vision quote. The accent rule above the quote is indigo, matching the preset's analogous blue-purple harmony.",5:"The CTA is in indigo at 10% of the visual space. The rest is dark space. The audience's eye goes exactly to the action."};function u(i){o.textContent=N[i+1]||''}function g(i){if(i<0||i>=t)return;s[c].classList.remove('active');c=i;s[c].classList.add('active');n.textContent=(c+1)+' / '+t;p.style.width=((c+1)/t*100)+'%';u(c);try{localStorage.setItem('dm-deep-space',String(c))}catch(e){}}function nx(){g(c+1)}function pv(){g(c-1)}document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nx()}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();pv()}if(e.key==='n'||e.key==='N'){v=!v;o.style.display=v?'block':'none';if(v)u(c)}});var sx=0;document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',function(e){var d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>50){if(d>0)nx();else pv()}},{passive:true});document.getElementById('next').addEventListener('click',nx);document.getElementById('prev').addEventListener('click',pv);try{var sv=parseInt(localStorage.getItem('dm-deep-space')||'0',10);if(sv>0&&sv<t){g(sv)}else{u(0)}}catch(e){u(0)}function sc(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080);k.style.transform='scale('+s+')'}sc();window.addEventListener('resize',sc)})();
+</script>
+</body>
+</html>

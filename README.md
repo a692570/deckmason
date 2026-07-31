@@ -29,16 +29,38 @@ Generate production-quality HTML slide decks with any AI coding agent. 31 curate
 - [Output](#output)
 - [Requirements](#requirements)
 - [Live Demo](#live-demo)
-- [Examples](#example-prompts)
+- [Examples](#examples)
+- [Example Prompts](#example-prompts)
 - [Repository Layout](#repository-layout)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Live Demo
 
-An 8-slide demo deck built with DeckMason using the Bold Signal preset (split-complementary, warm). Color theory validated: 60-30-10 distribution, WCAG 4.5:1 contrast on all text pairs, 13-rung lightness ladder with zero collisions, page rhythm with no 3+ consecutive same-weight slides.
+An 9-slide demo deck built with DeckMason using the Bold Signal preset (split-complementary, warm). Color theory validated: 60-30-10 distribution, WCAG 4.5:1 contrast on all text pairs, 13-rung lightness ladder with zero collisions, page rhythm with no 3+ consecutive same-weight slides.
 
 **[View the live demo](https://a692570.github.io/deckmason/demo/example-deck.html)**
+
+## Examples
+
+Four example decks, each using a different preset to show the range of the workflow. Each is color-theory validated (60-30-10, WCAG contrast, lightness ladder, saturation discipline, page rhythm).
+
+| Deck | Preset | Harmony | Temperature | Slides | Topic | Live link |
+|------|--------|---------|-------------|-------|-------|-----------|
+| Product Pitch | Bold Signal | Split-complementary | Warm | 9 | Why structured workflows beat prompt templates | [View](https://a692570.github.io/deckmason/demo/example-deck.html) |
+| Editorial Essay | Paper & Ink | Neutral + accent | Warm | 5 | The case for boring technology | [View](https://a692570.github.io/deckmason/examples/paper-ink-editorial-essay.html) |
+| Keynote Vision | Deep Space | Analogous | Cool | 5 | The next decade of AI: constraints, not compute | [View](https://a692570.github.io/deckmason/examples/deep-space-keynote-vision.html) |
+| Design Talk | Swiss Modern | Neutral + accent | Neutral | 5 | Why grid systems still matter | [View](https://a692570.github.io/deckmason/examples/swiss-modern-design-talk.html) |
+
+### What each example demonstrates
+
+**Product Pitch (Bold Signal, 9 slides)** - The hero demo. Full workflow: cover, big number, content-light, comparison, suspense question, pipeline, quote, themes grid, closing. Shows dark/light alternation, 6-phase pipeline layout, and the widest slide-type variety.
+
+**Editorial Essay (Paper & Ink, 5 slides)** - Serif typography (Cormorant Garamond + Source Serif 4). Cream paper background, crimson accent. Shows how the editorial preset handles essay-style content with pull quotes and drop-cap-style bullets.
+
+**Keynote Vision (Deep Space, 5 slides)** - Dark space aesthetic with indigo/purple analogous palette. Shows how a keynote/vision talk uses big numbers and atmospheric spacing. Diamond-shaped bullet markers are the preset's signature element.
+
+**Design Talk (Swiss Modern, 5 slides)** - Ultra-clean grid system with Archivo 800 display type. Red accent only on headings and CTAs (large text, 3:1+ contrast). Hard edges, no border-radius, no shadows. Shows how the Swiss discipline handles comparison and stat slides.
 
 The demo exercises:
 - Canvas Scale Architecture (1920x1080 + letterbox scaling)

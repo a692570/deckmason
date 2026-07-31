@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What is DeckForge? - AI Presentation Skill Demo</title>
-<meta name="description" content="A demo deck built with DeckForge. 8 slides showing the Bold Signal preset, color theory validation, Canvas Scale Architecture, and the full workflow.">
+<title>What is DeckMason? - AI Presentation Skill Demo</title>
+<meta name="description" content="A demo deck built with DeckMason. 8 slides showing the Bold Signal preset, color theory validation, Canvas Scale Architecture, and the full workflow.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -550,7 +550,7 @@ p, li {
         <div class="cover-eyebrow">Demo Deck - Bold Signal Preset</div>
       </div>
       <h1 class="reveal">Design quality is a system, not a prompt</h1>
-      <p class="subtitle reveal">How DeckForge turns any coding agent into a production-quality presentation builder with 1195 lines of structured workflow.</p>
+      <p class="subtitle reveal">How DeckMason turns any coding agent into a production-quality presentation builder with 1195 lines of structured workflow.</p>
       <div class="footer-hint reveal">Press N for speaker notes - Arrow keys to navigate</div>
     </section>
 
@@ -590,7 +590,7 @@ p, li {
           </ul>
         </div>
         <div class="comparison-col">
-          <h3>DeckForge workflow</h3>
+          <h3>DeckMason workflow</h3>
           <ul>
             <li>6 phases: brief, structure, outline, HTML, polish, export</li>
             <li>Color theory: 60-30-10, harmony, contrast, saturation</li>
@@ -652,7 +652,7 @@ p, li {
       <blockquote class="reveal">
         Every slide must have a title that tells the audience what to think, not what the slide is about. If the heading is a topic label, the slide has no point.
       </blockquote>
-      <div class="attribution reveal">DeckForge SKILL.md - Assertion-Evidence Principle</div>
+      <div class="attribution reveal">DeckMason SKILL.md - Assertion-Evidence Principle</div>
     </section>
 
     <!-- Slide 8: Themes (light) -->
@@ -709,8 +709,8 @@ p, li {
       <h2 class="reveal">Stop prompting. Start shipping decks.</h2>
       <p class="cta-text reveal">Clone the repo, point your agent at SKILL.md, and generate a production-quality deck in minutes. 31 themes, color theory validation, PPTX export. No API keys.</p>
       <div class="reveal">
-        <a href="https://github.com/a692570/deckforge" style="text-decoration: none;">
-          <span class="cta-box">git clone deckforge</span>
+        <a href="https://github.com/a692570/deckmason" style="text-decoration: none;">
+          <span class="cta-box">git clone deckmason</span>
         </a>
       </div>
     </section>
@@ -738,7 +738,7 @@ p, li {
   var notesVisible = false;
 
   var NOTES = {
-    1: "This deck is a live demo. It was generated using the Bold Signal preset, a split-complementary warm palette. The color theory was validated: 60-30-10 distribution, WCAG contrast, lightness hierarchy. This is what DeckForge produces.",
+    1: "This deck is a live demo. It was generated using the Bold Signal preset, a split-complementary warm palette. The color theory was validated: 60-30-10 distribution, WCAG contrast, lightness hierarchy. This is what DeckMason produces.",
     2: "1195 lines is the SKILL.md alone. Add the 837-line STYLE_PRESETS.md and you have a complete design system that prevents the most common AI deck failures before they happen.",
     3: "This is a light slide. Notice the rhythm break: slides 1-2 are dark, slide 3 is light, slide 4 is dark. No more than 2 consecutive same-weight slides. The color theory requires the accent at exactly 10% of the visual space.",
     4: "The comparison uses temperature contrast: muted gray on the left, accent orange on the right. The comparison itself is the argument. No need to read every line, the structure makes the point.",
@@ -761,7 +761,7 @@ p, li {
     counter.textContent = (current + 1) + ' / ' + total;
     progress.style.width = ((current + 1) / total * 100) + '%';
     updateNotes(current);
-    try { localStorage.setItem('deckforge-demo-slide', String(current)); } catch(e) {}
+    try { localStorage.setItem('deckmason-demo-slide', String(current)); } catch(e) {}
   }
 
   function next() { goTo(current + 1); }
@@ -788,7 +788,7 @@ p, li {
   document.getElementById('prev').addEventListener('click', prev);
 
   try {
-    var saved = parseInt(localStorage.getItem('deckforge-demo-slide') || '0', 10);
+    var saved = parseInt(localStorage.getItem('deckmason-demo-slide') || '0', 10);
     if (saved > 0 && saved < total) { goTo(saved); } else { updateNotes(0); }
   } catch(e) { updateNotes(0); }
 

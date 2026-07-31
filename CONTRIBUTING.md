@@ -1,6 +1,6 @@
-# Contributing to DeckForge
+# Contributing to DeckMason
 
-Thanks for your interest in contributing! DeckForge is an open-source AI presentation skill. Here's how to help.
+Thanks for your interest in contributing! DeckMason is an open-source AI presentation skill. Here's how to help.
 
 ## Ways to contribute
 

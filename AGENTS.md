@@ -1,10 +1,10 @@
 # AGENTS.md
 
-This is the operating manual for any AI coding agent using DeckForge. Read this before building a deck.
+This is the operating manual for any AI coding agent using DeckMason. Read this before building a deck.
 
-## What DeckForge is
+## What DeckMason is
 
-DeckForge is a presentation-generation skill. Your job is to read `SKILL.md`, follow the 6-phase workflow, and produce a self-contained HTML slide deck (with optional PPTX/PDF export). You write real files to disk, not chat output.
+DeckMason is a presentation-generation skill. Your job is to read `SKILL.md`, follow the 6-phase workflow, and produce a self-contained HTML slide deck (with optional PPTX/PDF export). You write real files to disk, not chat output.
 
 ## How to use it
 
@@ -62,7 +62,7 @@ When the user picks a theme from `STYLE_PRESETS.md`, apply only that theme's CSS
 ## File structure
 
 ```
-deckforge/
+deckmason/
 ├── SKILL.md              # The workflow (read this)
 ├── STYLE_PRESETS.md      # 31 themes + Kami CSS spec
 ├── AGENTS.md             # This file

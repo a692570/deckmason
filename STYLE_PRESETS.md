@@ -1,6 +1,6 @@
 # Style Presets Reference
 
-Curated visual styles for DeckForge. Each preset includes specific font choices, color palettes, and animation approaches to ensure distinctive, non-generic designs.
+Curated visual styles for DeckMason. Each preset includes specific font choices, color palettes, and animation approaches to ensure distinctive, non-generic designs.
 
 Every preset is classified by **color harmony**, **temperature**, and **60-30-10 distribution** so the agent can validate color theory at theme selection time. See the Color Theory System in `SKILL.md` for the full rules.
 

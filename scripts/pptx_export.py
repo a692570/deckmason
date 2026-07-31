@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPTX Export Script for DeckForge
+PPTX Export Script for DeckMason
 Converts HTML presentations to PowerPoint (.pptx) format with full styling support.
 
 Usage:

@@ -1,12 +1,12 @@
 <div align="center">
 
-# DeckForge
+# DeckMason
 
 **AI Presentation Skill for Coding Agents**
 
 Generate production-quality HTML slide decks with any AI coding agent. 31 curated themes, Pyramid Principle storytelling, PPTX/PDF export, brand import. No API keys needed.
 
-[![GitHub stars](https://img.shields.io/github/stars/a692570/deckforge?style=social)](https://github.com/a692570/deckforge/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/a692570/deckmason?style=social)](https://github.com/a692570/deckmason/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![No API Keys](https://img.shields.io/badge/No%20API%20Keys-needed-success)](#requirements)
@@ -36,9 +36,9 @@ Generate production-quality HTML slide decks with any AI coding agent. 31 curate
 
 ## Live Demo
 
-An 8-slide demo deck built with DeckForge using the Bold Signal preset (split-complementary, warm). Color theory validated: 60-30-10 distribution, WCAG 4.5:1 contrast on all text pairs, 13-rung lightness ladder with zero collisions, page rhythm with no 3+ consecutive same-weight slides.
+An 8-slide demo deck built with DeckMason using the Bold Signal preset (split-complementary, warm). Color theory validated: 60-30-10 distribution, WCAG 4.5:1 contrast on all text pairs, 13-rung lightness ladder with zero collisions, page rhythm with no 3+ consecutive same-weight slides.
 
-**[View the live demo](https://a692570.github.io/deckforge/demo/example-deck.html)**
+**[View the live demo](https://a692570.github.io/deckmason/demo/example-deck.html)**
 
 The demo exercises:
 - Canvas Scale Architecture (1920x1080 + letterbox scaling)
@@ -52,7 +52,7 @@ The demo exercises:
 ## Quick Start
 
 ```bash
-git clone https://github.com/a692570/deckforge.git
+git clone https://github.com/a692570/deckmason.git
 ```
 
 Point your agent at `SKILL.md` when you ask it to build a deck:
@@ -66,12 +66,12 @@ Point your agent at `SKILL.md` when you ask it to build a deck:
 **For OpenClaw / OpenCode:**
 ```bash
 cd ~/.openclaw/skills
-git clone https://github.com/a692570/deckforge.git
+git clone https://github.com/a692570/deckmason.git
 ```
 
 ## What It Does
 
-DeckForge is a structured, multi-phase workflow. It's not a prompt template you paste into a chat window. Your agent reads `SKILL.md`, follows the phases, and writes real files to disk.
+DeckMason is a structured, multi-phase workflow. It's not a prompt template you paste into a chat window. Your agent reads `SKILL.md`, follows the phases, and writes real files to disk.
 
 The output is a self-contained HTML file with:
 - Animated slide transitions (keyboard, touch, scroll-snap navigation)
@@ -221,7 +221,7 @@ Two PPTX export paths:
 ## Repository Layout
 
 ```
-deckforge/
+deckmason/
 ├── SKILL.md              # The workflow your agent follows (1045 lines)
 ├── STYLE_PRESETS.md      # 31 themes + Kami CSS spec (796 lines)
 ├── AGENTS.md             # Operating manual for AI agents

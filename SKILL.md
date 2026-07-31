@@ -1,4 +1,4 @@
-# DeckForge - AI Presentation Workflow
+# DeckMason - AI Presentation Workflow
 
 Create production-quality HTML slide decks from a topic, document, or outline. Your agent reads this workflow, builds the slides, and exports to PPTX or PDF. You review and ship.
 
@@ -400,7 +400,7 @@ Never use serif for body copy or sans-serif for display headings. The contrast b
 
 #### Color Theory System
 
-Color is not a decoration choice. It is a structural decision that must be validated before writing a single slide. Every DeckForge deck must pass a color theory check at three points: theme selection, slide generation, and final review.
+Color is not a decoration choice. It is a structural decision that must be validated before writing a single slide. Every DeckMason deck must pass a color theory check at three points: theme selection, slide generation, and final review.
 
 ##### The 60-30-10 Rule (mandatory)
 

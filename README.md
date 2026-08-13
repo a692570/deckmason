@@ -73,6 +73,22 @@ The demo exercises:
 
 ## Quick Start
 
+**Option A: npm (recommended for quick setup)**
+
+```bash
+# Initialize in the default location (~/.claude/skills/deckmason)
+npx deckmason init
+
+# Or initialize in a specific directory
+npx deckmason init ./my-decks
+
+# Or install globally
+npm install -g deckmason
+deckmason init
+```
+
+**Option B: git clone**
+
 ```bash
 git clone https://github.com/a692570/deckmason.git
 ```

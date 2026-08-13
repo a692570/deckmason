@@ -1,0 +1,35 @@
+{
+  "name": "deckmason",
+  "version": "0.1.0",
+  "description": "AI Presentation Skill for Coding Agents",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a692570/deckmason.git"
+  },
+  "keywords": [
+    "presentation",
+    "slides",
+    "pptx",
+    "html",
+    "ai",
+    "agent",
+    "claude",
+    "cursor"
+  ],
+  "bin": {
+    "deckmason": "scripts/deckmason-cli.js"
+  },
+  "files": [
+    "SKILL.md",
+    "STYLE_PRESETS.md",
+    "AGENTS.md",
+    "scripts/",
+    "references/",
+    "examples/",
+    "demo/"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

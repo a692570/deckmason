@@ -4,11 +4,11 @@ Thanks for your interest in contributing! DeckMason is an open-source AI present
 
 ## Ways to contribute
 
-- **New themes** — add a preset to `STYLE_PRESETS.md` with full CSS, font sources, and a mood-to-preset mapping entry
-- **Better export scripts** — improve `scripts/pptx_export.py` or add new export paths
-- **Workflow improvements** — propose changes to `SKILL.md` that make decks better
-- **Bug fixes** — fix issues in the export script or CSS presets
-- **Documentation** — improve README, examples, or add platform-specific guides
+- **New themes**: add a preset to `STYLE_PRESETS.md` with full CSS, font sources, and a mood-to-preset mapping entry
+- **Better export scripts**: improve `scripts/pptx_export.py` or add new export paths
+- **Workflow improvements**: propose changes to `SKILL.md` that make decks better
+- **Bug fixes**: fix issues in the export script or CSS presets
+- **Documentation**: improve README, examples, or add platform-specific guides
 
 ## How to add a new theme
 

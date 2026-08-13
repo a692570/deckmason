@@ -174,6 +174,34 @@ The `SKILL.md` covers the full pipeline:
 - Industry Theme Constraints (banned combinations per audience)
 - Chart Anti-Patterns enforced at generation time
 
+## PPT Import
+
+Convert an existing .pptx file into DeckMason's HTML slide format. The import script reads the presentation and extracts slide content, images, theme colors, and fonts into a structured JSON file.
+
+```bash
+python3 scripts/pptx_import.py company-deck.pptx --output decks/input_deck.json
+```
+
+The extracted JSON contains:
+- Slide layout type, title, subtitle, body text, and paragraphs (with indentation levels)
+- Images with positions and sizes (converted from EMU to pixels)
+- Speaker notes from each slide
+- Theme colors (from theme1.xml color scheme) and fonts (major and minor)
+
+### Import Workflow
+
+1. Run the import script on your .pptx file
+2. Your agent reads the JSON output and maps each source slide to a DeckMason slide type (cover, content, big number, comparison, etc.)
+3. The agent feeds the content into Phase 0 as source material instead of asking for a topic
+4. DeckMason preserves the original deck structure but applies its quality guardrails
+
+```
+"Convert company-deck.pptx into an HTML presentation"
+"Import sales-deck.pptx and restyle it with the Deep Space theme"
+```
+
+See `references/phase0-brief.md` for the full PPT import workflow.
+
 ## Brand Import
 
 Extract a theme from existing assets instead of picking a preset:

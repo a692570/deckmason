@@ -3,33 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeckMason: AI Presentation Skill for Coding Agents</title>
-
-<meta name="title" content="DeckMason: AI Presentation Skill for Coding Agents">
-<meta name="description" content="Generate production-quality HTML slide decks with any AI coding agent. 31 curated themes, Pyramid Principle storytelling, PPTX/PDF export, PPT import, visual preview mode. No API keys needed.">
+<title>DeckMason: AI presentation skill for coding agents</title>
+<meta name="title" content="DeckMason: AI presentation skill for coding agents">
+<meta name="description" content="A local skill that teaches Claude Code, Cursor, Codex, and Windsurf to build HTML slide decks. 31 themes, Pyramid Principle, color checks, PPT import, PPTX and PDF export. No API keys.">
 <meta name="keywords" content="ai presentation, slide deck generator, html presentation, pptx export, ai slides, coding agent skill, claude code skill, ai pitch deck, presentation automation, developer tools, open source presentations">
 <meta name="author" content="DeckMason">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-<link rel="canonical" href="https://github.com/a692570/deckmason">
-
+<link rel="canonical" href="https://a692570.github.io/deckmason/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://a692570.github.io/deckmason/">
-<meta property="og:title" content="DeckMason: AI Presentation Skill for Coding Agents">
-<meta property="og:description" content="Generate production-quality HTML slide decks with any AI coding agent. 31 themes, Pyramid Principle storytelling, PPTX/PDF export, PPT import, visual preview. No API keys.">
+<meta property="og:title" content="DeckMason: AI presentation skill for coding agents">
+<meta property="og:description" content="A local skill that teaches any coding agent to build HTML slide decks. 31 themes, Pyramid Principle, PPT import, PPTX and PDF export. No API keys.">
 <meta property="og:site_name" content="DeckMason">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/a692570/deckmason/main/demo/og-cover.png">
 <meta property="og:image:alt" content="DeckMason: AI presentation skill for coding agents">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://a692570.github.io/deckmason/">
-<meta name="twitter:title" content="DeckMason: AI Presentation Skill for Coding Agents">
-<meta name="twitter:description" content="Generate production-quality HTML slide decks with any AI coding agent. 31 themes, Pyramid Principle, PPTX/PDF export, PPT import. No API keys.">
+<meta name="twitter:title" content="DeckMason: AI presentation skill for coding agents">
+<meta name="twitter:description" content="A local skill that teaches any coding agent to build HTML slide decks. 31 themes, Pyramid Principle, PPT import. No API keys.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/a692570/deckmason/main/demo/og-cover.png">
 <meta name="twitter:image:alt" content="DeckMason: AI presentation skill">
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,766 +42,706 @@
   "featureList": ["31 themes", "Pyramid Principle storytelling", "PPT import", "Visual preview mode", "PPTX/PDF export", "GSAP animations", "Brand import", "Progressive disclosure", "npm/CLI install"]
 }
 </script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Surface tiers: warm dark, not cold blue-gray */
-  --void: #0a0908;
-  --carbon: #121110;
-  --obsidian: #1a1816;
-  --graphite: #252320;
-  --slag: #322e2a;
-
-  /* Text: warm off-white */
-  --text: #f5f3f0;
-  --text-2: #c4bfb8;
-  --text-3: #8a847d;
-  --text-4: #5c5751;
-
-  /* Single accent: bold warm orange */
-  --accent: #ff5722;
-  --accent-bright: #ff6b35;
-  --accent-glow: rgba(255, 87, 34, 0.12);
-  --accent-dim: rgba(255, 87, 34, 0.06);
-
-  /* Borders: semi-transparent warm white */
-  --border: rgba(245, 243, 240, 0.07);
-  --border-2: rgba(245, 243, 240, 0.1);
-
-  /* Radius: exactly 3 values */
+  --void: #000000;
+  --carbon: #181818;
+  --graphite: #1F1F1F;
+  --slag: #272727;
+  --ink: #F5F3F0;
+  --mute: #8A847D;
+  --faint: #5C5751;
+  --line: rgba(245, 243, 240, 0.1);
+  --accent: #FF5722;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
   --r-sm: 6px;
   --r-lg: 16px;
   --r-full: 9999px;
-
-  /* Easing */
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --max: 1080px;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-
 body {
-  font-family: 'Geist', system-ui, -apple-system, sans-serif;
   background: var(--void);
-  color: var(--text);
-  line-height: 1.6;
+  color: var(--ink);
+  font-family: Geist, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
-
-h1, h2, h3, h4 { text-wrap: balance; }
-p { text-wrap: pretty; }
+img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
-code { font-family: 'Geist Mono', monospace; font-size: 0.9em; }
-::selection { background: var(--accent-glow); color: var(--text); }
+h1, h2, h3 { text-wrap: balance; font-weight: 600; }
+p { text-wrap: pretty; }
+code, .mono { font-family: "Geist Mono", ui-monospace, monospace; }
+::selection { background: rgba(255, 87, 34, 0.28); color: var(--ink); }
 
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  background: var(--ink);
+  color: var(--void);
+  padding: 8px 12px;
+  z-index: 40;
+  border-radius: var(--r-sm);
+}
+.skip:focus { top: 16px; }
 
-/* Nav: solid background, no glassmorphism */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
 nav {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 20;
   background: var(--void);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--line);
 }
 nav .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 56px;
+  gap: 16px;
 }
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-}
-.brand svg { width: 18px; height: 18px; }
-.brand b { color: var(--accent); font-weight: 600; }
-
-nav .links { display: flex; gap: 28px; font-size: 14px; color: var(--text-2); }
-nav .links a { transition: color 150ms var(--ease-out); transition-property: color; }
-nav .links a:hover { color: var(--text); }
-nav .gh {
+.brand { font-weight: 600; font-size: 16px; letter-spacing: -0.01em; }
+.brand span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--mute); }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 7px 16px;
+  min-height: 40px;
+  padding: 8px 16px;
   border-radius: var(--r-full);
   background: var(--accent);
   color: var(--void);
-  min-height: 40px;
-  transition: transform 100ms var(--ease-out);
-  transition-property: transform;
-}
-nav .gh:active { transform: scale(0.96); }
-nav .gh svg { width: 15px; height: 15px; }
-
-/* Slide-section: the organizing idea.
-   Each section is a "slide" with canvas-scale framing. */
-.slide {
-  padding: 100px 0;
-  position: relative;
-}
-.slide-alt { background: var(--carbon); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-/* Slide number indicator (like a deck progress counter) */
-.slide-num {
-  font-family: 'Geist Mono', monospace;
-  font-size: 12px;
-  color: var(--text-4);
-  letter-spacing: 0.05em;
-  margin-bottom: 24px;
-  display: block;
-}
-
-/* Hero slide: canvas-black with subtle warm glow */
-.hero {
-  padding: 140px 0 100px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero .wrap { position: relative; }
-.hero h1 {
-  font-size: clamp(40px, 7vw, 68px);
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.022em;
-  line-height: 1.05;
-  margin-bottom: 24px;
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
 }
-.hero h1 em { color: var(--accent); font-style: normal; }
-.hero .sub {
-  font-size: clamp(16px, 2.5vw, 20px);
-  color: var(--text-2);
-  max-width: 540px;
-  margin: 0 auto 36px;
-  line-height: 1.5;
+.nav-cta:hover { filter: brightness(1.06); }
+.nav-cta:active { transform: scale(0.98); }
+button.nav-cta, button.btn {
+  font-family: inherit;
+  cursor: pointer;
 }
 
-/* Install bar */
+.hero { padding: 48px 0 56px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(300px, 1.15fr);
+  gap: 40px;
+  align-items: center;
+}
+.hero-kicker {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.022em;
+  max-width: 18ch;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #ffffff, #9b9b9b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero .sub {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--ink);
+  max-width: 42rem;
+  margin-bottom: 24px;
+}
 .install {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px 10px 18px;
+  gap: 12px;
+  padding: 8px 8px 8px 16px;
   background: var(--carbon);
-  border: 1px solid var(--border);
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  margin-bottom: 36px;
-  font-family: 'Geist Mono', monospace;
+  margin-bottom: 24px;
   font-size: 14px;
 }
-.install .p { color: var(--accent); user-select: none; }
-.install .c { color: var(--text); }
 .install button {
-  padding: 4px 10px;
-  border-radius: var(--r-sm);
-  background: var(--obsidian);
-  border: 1px solid var(--border);
+  border: 0;
+  background: var(--graphite);
+  color: var(--mute);
+  font-family: "Geist Mono", ui-monospace, monospace;
   font-size: 12px;
-  color: var(--text-3);
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: var(--r-sm);
   cursor: pointer;
-  font-family: 'Geist Mono', monospace;
-  min-height: 28px;
-  transition: background 150ms var(--ease-out);
-  transition-property: background;
 }
-.install button:hover { background: var(--graphite); color: var(--text); }
-
-.cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
-
+.install button:hover { color: var(--ink); }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
 .btn {
   display: inline-flex;
   align-items: center;
-  padding: 12px 28px;
-  font-weight: 600;
-  font-size: 16px;
-  border-radius: var(--r-full);
-  min-height: 44px;
-  transition: transform 150ms var(--ease-out);
-  transition-property: transform;
-}
-.btn:active { transform: scale(0.96); }
-.btn-fill { background: var(--accent); color: var(--void); }
-.btn-fill:hover { box-shadow: 0 8px 32px var(--accent-glow); transition-property: transform, box-shadow; }
-.btn-line { background: transparent; border: 1px solid var(--border-2); color: var(--text); }
-.btn-line:hover { border-color: var(--text-4); transition-property: border-color, transform; }
-
-.hero .proof { font-size: 14px; color: var(--text-4); }
-.hero .proof strong { color: var(--text-3); font-weight: 500; }
-
-/* Section heading */
-.head { margin-bottom: 56px; }
-.head.center { text-align: center; }
-.head h2 {
-  font-size: clamp(28px, 4.5vw, 44px);
-  font-weight: 600;
-  letter-spacing: -0.022em;
-  line-height: 1.1;
-  margin-bottom: 14px;
-}
-.head p {
-  color: var(--text-2);
-  font-size: 17px;
-  max-width: 540px;
-  line-height: 1.5;
-}
-.head.center p { margin: 0 auto; }
-
-/* FEATURE BENTO: varied surface treatments, not identical card grid */
-.bento {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.bento-wide { grid-column: 1 / -1; }
-.bento-box {
-  padding: 32px;
-  background: var(--obsidian);
-  border-radius: var(--r-lg);
-  border: 1px solid var(--border);
-  transition: border-color 200ms var(--ease-out);
-  transition-property: border-color;
-}
-.bento-box:hover { border-color: var(--border-2); }
-.bento-box.accent { border-color: rgba(255, 87, 34, 0.2); }
-.bento-box h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-.bento-box p { font-size: 14px; color: var(--text-2); line-height: 1.55; }
-.bento-box .tag {
-  display: inline-block;
-  font-family: 'Geist Mono', monospace;
-  font-size: 11px;
-  color: var(--accent);
-  margin-bottom: 16px;
-  letter-spacing: 0.03em;
-}
-.bento-box .big {
-  font-size: 48px;
-  font-weight: 600;
-  letter-spacing: -0.022em;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.bento-box .big sub { font-size: 14px; font-weight: 400; color: var(--text-3); vertical-align: baseline; }
-
-/* Inline steps: not cards, just a numbered list */
-.steps {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  max-width: 680px;
-  margin: 0 auto;
-}
-.step-row {
-  display: flex;
-  gap: 20px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: flex-start;
-}
-.step-row:last-child { border-bottom: none; }
-.step-num-circle {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--r-full);
-  background: var(--accent);
-  color: var(--void);
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 15px;
-  font-family: 'Geist Mono', monospace;
+  min-height: 44px;
+  padding: 8px 20px;
+  border-radius: var(--r-full);
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid transparent;
 }
-.step-body h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; }
-.step-body p { font-size: 14px; color: var(--text-2); line-height: 1.55; }
-.step-body code { background: var(--obsidian); padding: 1px 5px; border-radius: 4px; color: var(--accent-bright); }
+.btn:active { transform: scale(0.98); }
+.btn-fill { background: var(--accent); color: var(--void); }
+.btn-fill:hover { filter: brightness(1.06); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-line:hover { border-color: var(--mute); }
+.proof-line { font-size: 14px; line-height: 20px; color: var(--mute); }
+.proof-line strong { color: var(--ink); font-weight: 500; }
 
-/* Theme strip: horizontal, scrollable, like a film strip */
-.theme-strip {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 12px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--graphite) transparent;
+.band, .tagline, .close, .hero { scroll-margin-top: 72px; }
+.band { padding: 96px 0; }
+.band-alt { background: var(--carbon); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.head { margin-bottom: 48px; max-width: 640px; }
+.head h2 {
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: -0.022em;
+  margin-bottom: 12px;
 }
-.theme-strip::-webkit-scrollbar { height: 4px; }
-.theme-strip::-webkit-scrollbar-thumb { background: var(--graphite); border-radius: 2px; }
-.t-card {
-  flex-shrink: 0;
-  width: 200px;
-  padding: 20px;
-  background: var(--obsidian);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  text-align: center;
-  transition: border-color 200ms var(--ease-out);
-  transition-property: border-color;
-}
-.t-card:hover { border-color: var(--border-2); }
-.t-card .sw {
-  width: 100%;
-  height: 48px;
-  border-radius: var(--r-sm);
-  margin-bottom: 14px;
-}
-.t-card .name { font-size: 14px; font-weight: 500; color: var(--text); }
-.t-card .meta { font-size: 11px; color: var(--text-4); margin-top: 4px; font-family: 'Geist Mono', monospace; }
+.head p { font-size: 16px; line-height: 24px; color: var(--mute); }
 
-/* Demo frame: like a slide projected on screen */
-.demo-frame {
-  margin-top: 40px;
+.frame {
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
   overflow: hidden;
-  aspect-ratio: 16/9;
-  background: var(--carbon);
-  outline: 1px solid rgba(245, 243, 240, 0.08);
-  outline-offset: -1px;
+  aspect-ratio: 16 / 9;
+  background: #111;
 }
-.demo-frame iframe { width: 100%; height: 100%; border: none; }
-.demo-row {
+.frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.hero .frame { margin-top: 0; }
+.themes {
   display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 24px;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--slag) transparent;
+}
+.theme {
+  flex: 0 0 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--mute);
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.theme .sw {
+  height: 48px;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.theme .sw i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+}
+.theme[href]:hover { color: var(--ink); }
+.theme[href] .sw { outline: 1px solid transparent; }
+.theme[href]:hover .sw { outline-color: var(--ink); }
+.deck-row {
+  display: flex;
   flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
 }
-.demo-row a {
+.deck-row a {
   font-size: 14px;
-  padding: 8px 18px;
-  background: var(--carbon);
-  border: 1px solid var(--border);
-  border-radius: var(--r-full);
-  color: var(--text-2);
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  transition: border-color 150ms var(--ease-out), color 150ms var(--ease-out);
-  transition-property: border-color, color;
+  line-height: 20px;
+  color: var(--mute);
+  border-bottom: 1px solid transparent;
 }
-.demo-row a:hover { border-color: var(--text-4); color: var(--text); }
+.deck-row a:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
-/* Feature list: inline, two columns, no cards */
-.feat-grid {
+.benefits {
+  display: grid;
+  gap: 0;
+  max-width: 760px;
+}
+.benefit {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.benefit:first-child { border-top: 1px solid var(--line); }
+.benefit h3 { font-size: 18px; line-height: 28px; margin-bottom: 8px; }
+.benefit p { color: var(--mute); }
+
+.tagline {
+  padding: 128px 0;
+  background: var(--void);
+}
+.tagline p {
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.022em;
+  font-weight: 600;
+  max-width: 14ch;
+}
+.tagline .word {
+  color: color-mix(in srgb, var(--ink) 30%, transparent);
+  transition: color 800ms var(--ease);
+}
+.tagline .word.on { color: var(--ink); }
+
+.steps { display: flex; flex-direction: column; max-width: 720px; }
+.step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+}
+.step:first-child { border-top: 1px solid var(--line); }
+.step-n {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 14px;
+  color: var(--mute);
+  padding-top: 4px;
+}
+.step h3 { font-size: 18px; line-height: 28px; margin-bottom: 8px; }
+.step p { color: var(--mute); }
+.step code {
+  font-size: 13px;
+  background: var(--graphite);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.cli {
+  background: var(--graphite);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 20px 24px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 14px;
+  line-height: 28px;
+  overflow-x: auto;
+}
+.cli .c { color: var(--mute); }
+
+.split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px 40px;
-  max-width: 760px;
-  margin: 0 auto;
+  gap: 48px;
 }
-.feat {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--text-2);
-  padding: 6px 0;
-  line-height: 1.5;
+.list { display: flex; flex-direction: column; gap: 16px; }
+.list li {
+  list-style: none;
+  padding-left: 0;
+  color: var(--mute);
+  font-size: 16px;
+  line-height: 24px;
 }
-.feat::before {
-  content: '';
-  flex-shrink: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-top: 7px;
-}
+.list strong { color: var(--ink); font-weight: 500; }
 
-/* FAQ */
-.faq-list { max-width: 720px; margin: 0 auto; }
-.faq-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
+.faq { max-width: 720px; }
+.faq-item { border-bottom: 1px solid var(--line); padding: 24px 0; }
 .faq-item summary {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   min-height: 44px;
-  letter-spacing: -0.01em;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::after {
-  content: '';
-  width: 14px;
-  height: 14px;
-  border-right: 2px solid var(--text-3);
-  border-bottom: 2px solid var(--text-3);
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-right: 1.5px solid var(--mute);
+  border-bottom: 1.5px solid var(--mute);
   transform: rotate(45deg);
-  transition: transform 150ms var(--ease-out);
-  transition-property: transform;
-  margin-right: 4px;
+  flex-shrink: 0;
 }
 .faq-item[open] summary::after { transform: rotate(225deg); }
-.faq-item p { margin-top: 14px; font-size: 15px; color: var(--text-2); line-height: 1.6; }
-.faq-item code { background: var(--obsidian); padding: 2px 6px; border-radius: 4px; color: var(--accent-bright); }
-
-/* Final CTA */
-.cta-final { text-align: center; padding: 120px 0; position: relative; overflow: hidden; }
-.cta-final::before {
-  content: '';
-  position: absolute;
-  bottom: -40%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-  pointer-events: none;
-}
-.cta-final .wrap { position: relative; }
-.cta-final h2 { font-size: clamp(28px, 4.5vw, 48px); font-weight: 600; letter-spacing: -0.022em; line-height: 1.1; margin-bottom: 16px; }
-.cta-final p { color: var(--text-2); font-size: 17px; margin-bottom: 36px; }
-
-/* Footer */
-footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; font-size: 14px; color: var(--text-4); }
-footer a { color: var(--text-3); }
-footer a:hover { color: var(--text-2); }
-
-/* Scroll reveal */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); transition-property: opacity, transform; }
-.reveal.in { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 640px) {
-  nav .links { display: none; }
-  .feat-grid { grid-template-columns: 1fr; }
-  .bento { grid-template-columns: 1fr; }
-  .bento-wide { grid-column: auto; }
-  .hero { padding: 100px 0 80px; }
-  .slide { padding: 72px 0; }
-  .install { font-size: 12px; padding: 8px 12px; }
+.faq-item p { margin-top: 12px; color: var(--mute); }
+.faq-item code {
+  font-size: 13px;
+  background: var(--graphite);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
+.close { padding: 128px 0; text-align: center; }
+.close h2 {
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.022em;
+  max-width: 16ch;
+  margin: 0 auto 16px;
+}
+.close p { color: var(--mute); margin-bottom: 32px; }
+.close .cta-row { justify-content: center; }
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 32px 0 48px;
+  font-size: 14px;
+  color: var(--faint);
+}
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer a { color: var(--mute); }
+footer a:hover { color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+@media (max-width: 800px) {
+  .hero { padding: 40px 0 40px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hero h1 { font-size: 36px; line-height: 40px; }
+  .tagline p, .close h2 { font-size: 30px; line-height: 36px; }
+  .head h2 { font-size: 30px; line-height: 36px; }
+  .nav-links { display: none; }
+  .split { grid-template-columns: 1fr; gap: 32px; }
+  .band, .tagline { padding: 64px 0; }
+}
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .tagline .word { color: var(--ink); }
 }
 </style>
 </head>
 <body>
-
+<a class="skip" href="#main">Skip to content</a>
 <nav>
   <div class="wrap">
-    <a href="#" class="brand">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      Deck<b>Mason</b>
-    </a>
-    <div class="links">
-      <a href="#features">Features</a>
-      <a href="#how">Workflow</a>
-      <a href="#themes">Themes</a>
+    <a class="brand" href="#top">Deck<span>Mason</span></a>
+    <div class="nav-links">
       <a href="#demo">Demo</a>
+      <a href="#themes">Themes</a>
+      <a href="#how">Workflow</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="https://github.com/a692570/deckmason" class="gh">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.605-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      GitHub
-    </a>
+    <button type="button" class="nav-cta install-btn">Copy install</button>
   </div>
 </nav>
 
-<!-- HERO SLIDE -->
-<section class="hero">
-  <div class="wrap">
-    <span class="slide-num">01 / COVER</span>
-    <h1 class="reveal">Give your agent a <em>deck-building brain</em></h1>
-    <p class="sub reveal">DeckMason teaches any coding agent to build presentation decks with Pyramid Principle storytelling, validated color theory, and anti-slop guardrails. 31 themes. PPT import. No API keys.</p>
-    <div class="install reveal">
-      <span class="p">$</span>
-      <span class="c">npx deckmason init</span>
-      <button onclick="navigator.clipboard.writeText('npx deckmason init'); this.textContent='copied'; setTimeout(() => this.textContent='copy', 2000)">copy</button>
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-kicker">Local skill · MIT · no API keys</p>
+      <h1>Give your coding agent<br>a deck workflow.</h1>
+      <p class="sub">A skill file for Claude Code, Cursor, Codex, Windsurf, or Aider. Pyramid Principle, color checks, HTML on disk, then PPTX or PDF. Not a slide product.</p>
+      <div class="install" id="install">
+        <code id="cmd">npx deckmason init</code>
+        <button type="button" class="install-btn" id="copy">Copy</button>
+      </div>
+      <div class="cta-row">
+        <button type="button" class="btn btn-fill install-btn">Copy install</button>
+        <a class="btn btn-line" href="https://github.com/a692570/deckmason">View the repo</a>
+      </div>
+      <p class="proof-line"><strong>31 themes</strong>, plus Kami Warm Editorial. Arrow keys move the deck. N opens notes.</p>
     </div>
-    <div class="cta-row reveal">
-      <a href="https://github.com/a692570/deckmason#quick-start" class="btn btn-fill">Get started</a>
-      <a href="https://a692570.github.io/deckmason/demo/example-deck.html" class="btn btn-line">View live demo</a>
-    </div>
-    <p class="proof reveal"><strong>MIT</strong> · No API keys · 31 themes · 6-phase workflow · Progressive disclosure</p>
-  </div>
-</section>
-
-<!-- WHAT MAKES IT DIFFERENT: bento, not identical cards -->
-<section class="slide slide-alt" id="features">
-  <div class="wrap">
-    <div class="head center reveal">
-      <span class="slide-num">02 / WHY</span>
-      <h2>Not another slide generator</h2>
-      <p>Other tools make pretty pictures. DeckMason enforces narrative structure, validates color theory per slide, and fights AI slop at the generation layer.</p>
-    </div>
-    <div class="bento">
-      <div class="bento-box bento-wide reveal">
-        <span class="tag">storytelling</span>
-        <h3>Pyramid Principle, not bullet lists</h3>
-        <p>Every deck starts with a thesis. Each slide is an assertion-evidence heading that ladders up to the thesis. Contrast beats toggle between "what is" and "what could be" throughout. This is the storytelling framework McKinsey uses, encoded as a workflow your agent follows.</p>
-      </div>
-      <div class="bento-box reveal">
-        <span class="tag">color science</span>
-        <div class="big">60<sub>30-10</sub></div>
-        <p>Color distribution validated per slide. WCAG 4.5:1 contrast on all text pairs. 13-rung lightness ladder with collision detection. Saturation discipline enforced. Not just a palette pick.</p>
-      </div>
-      <div class="bento-box reveal">
-        <span class="tag">themes</span>
-        <div class="big">31<sub> curated</sub></div>
-        <p>11 original plus 20 extended. Each ships with classified harmony, temperature, and 60-30-10 metadata. From Modern SaaS to Brutalist to Swiss Modern to Deep Space.</p>
-      </div>
-      <div class="bento-box bento-wide reveal">
-        <span class="tag">imports</span>
-        <div style="display: flex; gap: 32px; flex-wrap: wrap;">
-          <div>
-            <h3 style="margin-bottom:4px">PPT import</h3>
-            <p>Drop a .pptx, extract content and theme, rebuild as polished HTML with quality guardrails applied.</p>
-          </div>
-          <div>
-            <h3 style="margin-bottom:4px">Visual preview</h3>
-            <p>Generate 3 cover slide previews in different themes before committing. Pick visually, not verbally.</p>
-          </div>
-          <div>
-            <h3 style="margin-bottom:4px">Brand import</h3>
-            <p>Extract colors and fonts from a PPTX, website URL, or brand PDF. Your deck matches your brand.</p>
-          </div>
-        </div>
-      </div>
-      <div class="bento-box reveal">
-        <span class="tag">animation</span>
-        <h3>GSAP, with fallbacks</h3>
-        <p>Optional GSAP-powered entrance and reveal animations. Every pattern has a prefers-reduced-motion fallback. Subtle, not theatrical.</p>
-      </div>
-      <div class="bento-box accent reveal">
-        <span class="tag">guardrails</span>
-        <h3>Anti-slop, built in</h3>
-        <p>Banned words list (no "unleash", "elevate", "seamless"). Data Slop Rule: never invent statistics. 30% Copy Cut Rule. AI Tells checklist before delivery. Designer's Eye critique.</p>
+    <div id="demo">
+      <div class="frame">
+        <iframe src="demo/example-deck.html" title="DeckMason Bold Signal demo deck"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS: inline numbered list, not cards -->
-<section class="slide" id="how">
+<section class="band band-alt" id="themes">
   <div class="wrap">
-    <div class="head center reveal">
-      <span class="slide-num">03 / WORKFLOW</span>
-      <h2>How it works</h2>
-      <p>Your agent reads the skill, follows the 6-phase workflow, and writes real HTML files to disk.</p>
+    <div class="head">
+      <h2>The 31 presets, as chips.</h2>
+      <p>Dominant color on the face, accent on the bar. Four of them have a live deck. Scroll the rest.</p>
+    </div>
+    <div class="themes" role="list">
+      <a class="theme" role="listitem" href="demo/example-deck.html"><span class="sw" style="background:#1a1a1a"><i style="background:#FF5722"></i></span>Bold Signal</a>
+      <a class="theme" role="listitem" href="examples/paper-ink-editorial-essay.html"><span class="sw" style="background:#faf9f7"><i style="background:#c41e3a"></i></span>Paper and Ink</a>
+      <a class="theme" role="listitem" href="examples/deep-space-keynote-vision.html"><span class="sw" style="background:#030712"><i style="background:#818cf8"></i></span>Deep Space</a>
+      <a class="theme" role="listitem" href="examples/swiss-modern-design-talk.html"><span class="sw" style="background:#ffffff"><i style="background:#ff3300"></i></span>Swiss Modern</a>
+      <div class="theme" role="listitem"><span class="sw" style="background:#ffffff"><i style="background:#00E3AA"></i></span>Modern SaaS</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#0a0f1c"><i style="background:#00ffcc"></i></span>Neon Cyber</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#0f172a"><i style="background:#3b82f6"></i></span>Midnight Exec</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#0d1117"><i style="background:#39d353"></i></span>Terminal Green</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#fef3f2"><i style="background:#f472b6"></i></span>Soft Pastel</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#fffbf5"><i style="background:#b45309"></i></span>Warm Editorial</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#ffffff"><i style="background:#ff0000"></i></span>Brutalist</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#0f0f1a"><i style="background:#764ba2"></i></span>Gradient Wave</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#0a0a0a"><i style="background:#4361ee"></i></span>Electric Studio</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#1a1a2e"><i style="background:#d4ff00"></i></span>Creative Voltage</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#0f0f0f"><i style="background:#d4a843"></i></span>Dark Botanical</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#f8f6f1"><i style="background:#c45c26"></i></span>Notebook Tabs</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#c8d9e6"><i style="background:#7c9eb2"></i></span>Pastel Geometry</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#f5e6dc"><i style="background:#6b4f7a"></i></span>Split Pastel</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#f5f3ee"><i style="background:#8a5a2b"></i></span>Vintage Editorial</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#e8edf2"><i style="background:#4361ee"></i></span>Liquid Glass</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#1a3a5c"><i style="background:#ff8c00"></i></span>Blueprint</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#faf3e8"><i style="background:#2a2a2a"></i></span>Watercolor Map</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#3a2d1f"><i style="background:#d4a843"></i></span>Golden Serif</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#1f2d24"><i style="background:#f5e6c8"></i></span>Chalkboard</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#fafafa"><i style="background:#0066cc"></i></span>Layer Stack</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#0a0a0a"><i style="background:#f5f5f5"></i></span>Hyperreal</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#ffffff"><i style="background:#1a1a1a"></i></span>Infographic</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#1a2744"><i style="background:#4a90d9"></i></span>Cobalt Grid</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#1a1a2e"><i style="background:#e94560"></i></span>8-Bit Orbit</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#fafafa"><i style="background:#ff3300"></i></span>Raw Grid</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#1a1a1a"><i style="background:#ff6b35"></i></span>Broadside</div>
+      <div class="theme" role="listitem"><span class="sw" style="background:#f5f4ed"><i style="background:#1B365D"></i></span>Kami Editorial</div>
+    </div>
+    <p class="deck-row">
+      <a href="demo/example-deck.html">Bold Signal, full screen</a>
+      <a href="examples/paper-ink-editorial-essay.html">Paper and Ink</a>
+      <a href="examples/deep-space-keynote-vision.html">Deep Space</a>
+      <a href="examples/swiss-modern-design-talk.html">Swiss Modern</a>
+      <a href="https://github.com/a692570/deckmason/blob/main/STYLE_PRESETS.md">All specs</a>
+    </p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head">
+      <h2>A pasted prompt cannot keep a grid.</h2>
+      <p>Most agent decks fail the same three ways: topic-label headings, broken contrast, five slides that weigh the same. DeckMason makes those hard rules, not reminders.</p>
+    </div>
+    <div class="benefits">
+      <article class="benefit">
+        <h3>The story is a thesis, not a table of contents</h3>
+        <p>Phase 1 encodes the Pyramid Principle. Every heading is an assertion. If the title is a topic label, the slide has no point and gets rewritten.</p>
+      </article>
+      <article class="benefit">
+        <h3>Color is a ratio, then a check</h3>
+        <p>Each theme ships with harmony, temperature, and a 60-30-10 split. Phase 5 checks contrast at 4.5:1, a 13-rung lightness ladder, and saturation budget before delivery.</p>
+      </article>
+      <article class="benefit">
+        <h3>The output is a file, not a chat blob</h3>
+        <p>Self contained HTML with 1920 by 1080 canvas math, speaker notes, and keyboard nav. Export with <code>python3 scripts/pptx_export.py</code> or headless Chrome for PDF.</p>
+      </article>
+      <article class="benefit">
+        <h3>Your existing deck is source material</h3>
+        <p><code>deckmason import company-deck.pptx</code> extracts slides, notes, theme colors, and fonts to JSON. The agent rebuilds under the same guardrails. Brand import also reads a website or a brand PDF.</p>
+      </article>
+      <article class="benefit">
+        <h3>The skill refuses invented proof</h3>
+        <p>Data Slop Rule: no statistic the user did not provide. Banned words list. 30 percent copy cut. One idea per slide. Reduced motion path on every animated deck.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="tagline" id="tagline" aria-label="Core claim">
+  <div class="wrap">
+    <p id="tagline-text">A prompt cannot enforce contrast. A skill file can.</p>
+  </div>
+</section>
+
+<section class="band band-alt" id="how">
+  <div class="wrap">
+    <div class="head">
+      <h2>Three commands. Then you talk to the agent.</h2>
+      <p>The CLI copies the skill. The agent reads SKILL.md and loads each phase file only when it reaches that phase.</p>
     </div>
     <div class="steps">
-      <div class="step-row reveal">
-        <div class="step-num-circle">1</div>
-        <div class="step-body">
-          <h3>Point your agent at SKILL.md</h3>
-          <p>Clone the repo or run <code>npx deckmason init</code>. Tell your agent to build a deck. It reads the 198-line entry point and loads phase details on demand, not all at once.</p>
+      <article class="step">
+        <div class="step-n">01</div>
+        <div>
+          <h3>Install locally</h3>
+          <p>Run <code>npx deckmason init</code>. Default path is <code>~/.claude/skills/deckmason</code>. Or clone the repo. Or <code>npm install -g deckmason</code>.</p>
         </div>
-      </div>
-      <div class="step-row reveal">
-        <div class="step-num-circle">2</div>
-        <div class="step-body">
-          <h3>Scope and structure</h3>
-          <p>Visual preview or 4 text questions. Then Pyramid Principle: one thesis, 3 to 5 supporting arguments, evidence per slide. Assertion-evidence headings, not topic labels.</p>
+      </article>
+      <article class="step">
+        <div class="step-n">02</div>
+        <div>
+          <h3>Pick a direction with your eyes</h3>
+          <p>Run <code>deckmason preview "Your Topic"</code>. You get three one-slide HTML files: Deep Space, Modern SaaS, Bold Signal. Open them, pick one, tell the agent. Text questions exist if you prefer words.</p>
         </div>
-      </div>
-      <div class="step-row reveal">
-        <div class="step-num-circle">3</div>
-        <div class="step-body">
-          <h3>Generate and polish</h3>
-          <p>HTML with Canvas Scale Architecture, quality guardrails, AI Tells checklist, Designer's Eye critique. Export to PPTX or PDF. Ship it.</p>
+      </article>
+      <article class="step">
+        <div class="step-n">03</div>
+        <div>
+          <h3>Ask for the deck</h3>
+          <p>Point the agent at SKILL.md. It briefs, structures, outlines, writes HTML, checks itself, then exports if you asked. Specialized modes (cinematic 22s, Swiss strict, editorial web, brand import) load only when requested.</p>
         </div>
+      </article>
+    </div>
+    <div class="cli" style="margin-top:48px" aria-label="CLI commands">
+      <div><span class="c">$</span> npx deckmason init</div>
+      <div><span class="c">$</span> deckmason themes</div>
+      <div><span class="c">$</span> deckmason preview "Series A pitch"</div>
+      <div><span class="c">$</span> deckmason import company-deck.pptx</div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split">
+    <div>
+      <div class="head">
+        <h2>What the agent is not allowed to skip.</h2>
+        <p>From SKILL.md and references/quality-guardrails.md. These are gates, not style tips.</p>
       </div>
     </div>
+    <ul class="list">
+      <li><strong>Pre-flight scoping</strong> before a single slide: preview or four text questions.</li>
+      <li><strong>One idea per slide.</strong> Two ideas means two slides.</li>
+      <li><strong>No overflow:hidden</strong> to hide overflow. Split the slide.</li>
+      <li><strong>Title at least 2.5x body.</strong> Target 3x.</li>
+      <li><strong>Hero and non-hero alternate.</strong> No three same-weight slides in a row.</li>
+      <li><strong>N toggles speaker notes</strong> on every HTML deck.</li>
+      <li><strong>Self-check checklist</strong> before delivery: narrative, visual, color, content, technical, taste.</li>
+    </ul>
   </div>
 </section>
 
-<!-- THEMES: horizontal film strip -->
-<section class="slide slide-alt" id="themes">
+<section class="band band-alt" id="faq">
   <div class="wrap">
-    <div class="head reveal">
-      <span class="slide-num">04 / THEMES</span>
-      <h2>31 themes, not 3</h2>
-      <p>Each ships with classified color harmony, temperature, and 60-30-10 metadata. Scroll through a selection below.</p>
+    <div class="head">
+      <h2>Questions people actually ask.</h2>
+      <p>Answers from the README, CLI, and skill files. Nothing invented for this page.</p>
     </div>
-    <div class="theme-strip reveal">
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#f5f3f0,#ff5722)"></div><div class="name">Modern SaaS</div><div class="meta">neutral+accent</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#0a0f1c,#00ffcc)"></div><div class="name">Neon Cyber</div><div class="meta">complement</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#0f172a,#3b82f6)"></div><div class="name">Midnight Exec</div><div class="meta">mono</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#030712,#818cf8)"></div><div class="name">Deep Space</div><div class="meta">analogous</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#0d1117,#39d353)"></div><div class="name">Terminal Green</div><div class="meta">neutral+accent</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#faf9f7,#c41e3a)"></div><div class="name">Paper and Ink</div><div class="meta">neutral+accent</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#ffffff,#ff3300)"></div><div class="name">Swiss Modern</div><div class="meta">neutral+accent</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#fef3f2,#f472b6)"></div><div class="name">Soft Pastel</div><div class="meta">triadic</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#fffbf5,#b45309)"></div><div class="name">Warm Editorial</div><div class="meta">analogous</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#ffffff,#ff0000)"></div><div class="name">Brutalist</div><div class="meta">complement</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#0f0f1a,#764ba2)"></div><div class="name">Gradient Wave</div><div class="meta">analogous</div></div>
-      <div class="t-card"><div class="sw" style="background:linear-gradient(135deg,#1a1a1a,#ff5722)"></div><div class="name">Bold Signal</div><div class="meta">split-complement</div></div>
-    </div>
-    <p style="margin-top:24px"><a href="https://github.com/a692570/deckmason/blob/main/STYLE_PRESETS.md" style="color:var(--accent);font-size:14px;font-weight:500">View all 31 themes with full color specs</a></p>
-  </div>
-</section>
-
-<!-- DEMO: embedded slide deck -->
-<section class="slide" id="demo">
-  <div class="wrap">
-    <div class="head center reveal">
-      <span class="slide-num">05 / DEMO</span>
-      <h2>See it in action</h2>
-      <p>A 9-slide demo deck built with DeckMason. Bold Signal preset, split-complementary, warm. Press N for speaker notes.</p>
-    </div>
-    <div class="demo-frame reveal">
-      <iframe src="demo/example-deck.html" title="DeckMason live demo" loading="lazy"></iframe>
-    </div>
-    <div class="demo-row reveal">
-      <a href="https://a692570.github.io/deckmason/demo/example-deck.html" target="_blank">Open full screen</a>
-      <a href="https://a692570.github.io/deckmason/examples/paper-ink-editorial-essay.html" target="_blank">Paper and Ink</a>
-      <a href="https://a692570.github.io/deckmason/examples/deep-space-keynote-vision.html" target="_blank">Deep Space</a>
-      <a href="https://a692570.github.io/deckmason/examples/swiss-modern-design-talk.html" target="_blank">Swiss Modern</a>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES: inline list, no cards -->
-<section class="slide slide-alt">
-  <div class="wrap">
-    <div class="head center reveal">
-      <span class="slide-num">06 / SPEC</span>
-      <h2>Everything in the box</h2>
-      <p>One skill file, zero API keys, zero cloud dependencies. Your agent does the work locally.</p>
-    </div>
-    <div class="feat-grid">
-      <div class="feat reveal">31 curated visual themes with color metadata</div>
-      <div class="feat reveal">Pyramid Principle storytelling workflow</div>
-      <div class="feat reveal">Canvas Scale Architecture (1920x1080)</div>
-      <div class="feat reveal">Viewport fitting with clamp() and scroll-snap</div>
-      <div class="feat reveal">PPT import from existing .pptx files</div>
-      <div class="feat reveal">Visual preview mode for theme selection</div>
-      <div class="feat reveal">PPTX export via python-pptx</div>
-      <div class="feat reveal">PDF export via headless Chrome or Playwright</div>
-      <div class="feat reveal">GSAP animation layer with reduced-motion fallbacks</div>
-      <div class="feat reveal">Brand import from PPTX, URL, or PDF</div>
-      <div class="feat reveal">Speaker notes overlay (press N)</div>
-      <div class="feat reveal">Progressive disclosure (load only what you need)</div>
-      <div class="feat reveal">Banned words list (no unleash, elevate, seamless)</div>
-      <div class="feat reveal">Data Slop Rule: never invent statistics</div>
-      <div class="feat reveal">30% Copy Cut Rule for tighter slides</div>
-      <div class="feat reveal">npm/CLI install path</div>
-      <div class="feat reveal">AI Tells checklist before delivery</div>
-      <div class="feat reveal">Designer's Eye 5-dimension critique</div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="slide" id="faq">
-  <div class="wrap">
-    <div class="head center reveal">
-      <span class="slide-num">07 / FAQ</span>
-      <h2>Questions</h2>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item reveal">
-        <summary>What coding agents does this work with?</summary>
-        <p>Any agent that can read files and run scripts: Claude Code, Cursor, Codex CLI, Windsurf, Aider, and others. The agent reads SKILL.md and follows the workflow. No plugins needed.</p>
+    <div class="faq">
+      <details class="faq-item">
+        <summary>What agents does this work with?</summary>
+        <p>Any agent that can read files and run scripts: Claude Code, Cursor, Codex CLI, Windsurf, Aider, OpenClaw. No plugin. The agent reads SKILL.md and follows the workflow.</p>
       </details>
-      <details class="faq-item reveal">
-        <summary>Do I need API keys or cloud services?</summary>
-        <p>No. DeckMason runs entirely locally. Your agent uses its own LLM to generate content. The only external dependency is Google Fonts, loaded via CDN in the generated HTML.</p>
+      <details class="faq-item">
+        <summary>Do I need API keys or a cloud account?</summary>
+        <p>No. DeckMason runs locally. Your agent uses its own model. The generated HTML loads Google Fonts from a CDN. That is the only network call in a finished deck.</p>
       </details>
-      <details class="faq-item reveal">
-        <summary>Can I import existing PowerPoint files?</summary>
-        <p>Yes. Run <code>python3 scripts/pptx_import.py input.pptx</code> to extract slide content, theme colors, and fonts into JSON. Your agent maps the content to DeckMason slide types and rebuilds it as HTML.</p>
+      <details class="faq-item">
+        <summary>Can I import an existing PowerPoint?</summary>
+        <p>Yes. <code>deckmason import file.pptx</code> or <code>python3 scripts/pptx_import.py file.pptx</code> writes JSON with titles, body, images, notes, theme colors, and fonts. The agent maps those slides onto DeckMason types and rebuilds them.</p>
       </details>
-      <details class="faq-item reveal">
-        <summary>Can I export to PowerPoint or PDF?</summary>
-        <p>Yes. PPTX export uses python-pptx (Path A, image-based) or pptxgenjs (Path B, editable text boxes). PDF export uses headless Chrome or Playwright.</p>
+      <details class="faq-item">
+        <summary>Can I export back to PowerPoint or PDF?</summary>
+        <p>Yes. Path A is <code>python3 scripts/pptx_export.py presentation.html --output presentation.pptx</code> (image based, python-pptx). Path B is pptxgenjs and produces editable text boxes. PDF is headless Chrome or Playwright.</p>
       </details>
-      <details class="faq-item reveal">
-        <summary>How does visual preview mode work?</summary>
-        <p>Run <code>python3 scripts/preview_themes.py "Your Topic"</code> to generate 3 cover slide previews in different themes. Open the files, pick a direction, and tell your agent which one to use.</p>
+      <details class="faq-item">
+        <summary>How do I match our brand?</summary>
+        <p>Brand import reads theme1.xml from a PPTX, CSS variables from a URL, or hex and type rules from a brand PDF. The agent applies those tokens instead of a preset. Or pick one of the 31 presets, plus Kami Warm Editorial for print-like decks.</p>
       </details>
-      <details class="faq-item reveal">
-        <summary>Can I match my existing brand?</summary>
-        <p>Yes. Brand import extracts colors and fonts from a PPTX (theme1.xml), a website URL (CSS variables), or a brand guidelines PDF. Your agent applies the extracted tokens to the deck.</p>
+      <details class="faq-item">
+        <summary>What is visual preview mode?</summary>
+        <p><code>deckmason preview "Your Topic"</code> writes three single-slide HTML files: Deep Space, Modern SaaS, Bold Signal. You pick with your eyes. The four text questions stay as a fallback.</p>
       </details>
-      <details class="faq-item reveal">
-        <summary>How does progressive disclosure work?</summary>
-        <p>SKILL.md is a 198-line entry point. Each phase has a reference file in references/. Your agent loads only the file for the phase it is working on, instead of all 1,572 lines every time. Saves tokens, speeds up generation.</p>
+      <details class="faq-item">
+        <summary>Why is SKILL.md short if the workflow is long?</summary>
+        <p>Progressive disclosure. SKILL.md is the entry point, about 200 lines. Each phase lives in references/. The agent loads only the file for the phase it is in. The original single file was 1,195 lines.</p>
       </details>
-      <details class="faq-item reveal">
-        <summary>How do I install it?</summary>
-        <p>Three options: <code>git clone https://github.com/a692570/deckmason.git</code>, <code>npx deckmason init</code>, or <code>npm install -g deckmason</code>. Full instructions in the README.</p>
-      </details>
-      <details class="faq-item reveal">
+      <details class="faq-item">
         <summary>Is it free?</summary>
-        <p>Yes. MIT licensed. No cost, no sign-up, no API keys. The only cost is your agent's LLM token usage during generation.</p>
+        <p>Yes. MIT license. No signup. The only cost is the tokens your agent already spends when it writes the deck.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="cta-final">
+<section class="close">
   <div class="wrap">
-    <span class="slide-num reveal" style="display:block;text-align:center;margin-bottom:24px">08 / SHIP</span>
-    <h2 class="reveal">Start building better decks</h2>
-    <p class="reveal">Clone the repo, point your agent at SKILL.md, ship a deck in minutes.</p>
-    <a href="https://github.com/a692570/deckmason#quick-start" class="btn btn-fill reveal">Get started on GitHub</a>
+    <h2>Point the agent at the skill. Ship the deck.</h2>
+    <p>Clone, init, or install globally. Then ask for the presentation.</p>
+    <div class="cta-row">
+      <button type="button" class="btn btn-fill install-btn">Copy install</button>
+      <a class="btn btn-line" href="https://github.com/a692570/deckmason">View the repo</a>
+    </div>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
-    <p><a href="https://github.com/a692570/deckmason">DeckMason</a> · MIT License · Built by <a href="https://github.com/a692570">a692570</a></p>
+    <span>DeckMason · MIT · v0.1.0</span>
+    <span><a href="https://github.com/a692570/deckmason">github.com/a692570/deckmason</a></span>
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script>
-(function() {
-  var items = document.querySelectorAll('.reveal');
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry, i) {
-      if (entry.isIntersecting) {
-        setTimeout(function() { entry.target.classList.add('in'); }, i * 80);
-        obs.unobserve(entry.target);
-      }
+(function () {
+  var CMD = "npx deckmason init";
+  var buttons = document.querySelectorAll(".install-btn");
+  function labelAll(text) {
+    buttons.forEach(function (b) {
+      b.dataset.prev = b.dataset.prev || b.textContent;
+      b.textContent = text;
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-  items.forEach(function(item) { obs.observe(item); });
+  }
+  function restore() {
+    buttons.forEach(function (b) {
+      b.textContent = b.dataset.prev || "Copy install";
+    });
+    var copy = document.getElementById("copy");
+    if (copy) copy.textContent = "Copy";
+  }
+  async function copyInstall() {
+    try {
+      await navigator.clipboard.writeText(CMD);
+      labelAll("Copied");
+    } catch (e) {
+      labelAll("Failed");
+    }
+    setTimeout(restore, 1600);
+  }
+  buttons.forEach(function (b) {
+    b.addEventListener("click", copyInstall);
+  });
+
+  var el = document.getElementById("tagline-text");
+  var words = el.textContent.trim().split(/\s+/);
+  el.setAttribute("aria-label", el.textContent);
+  el.innerHTML = words.map(function (w) {
+    return '<span class="word">' + w + "</span>";
+  }).join(" ");
+  var spans = el.querySelectorAll(".word");
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || typeof gsap === "undefined") {
+    spans.forEach(function (s) { s.classList.add("on"); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      gsap.to(spans, {
+        color: "#F5F3F0",
+        duration: 0.45,
+        stagger: 0.08,
+        ease: "cubic-bezier(0.32, 0.72, 0, 1)",
+        onStart: function () {
+          spans.forEach(function (s) { s.classList.add("on"); });
+        }
+      });
+      io.disconnect();
+    });
+  }, { threshold: 0.4 });
+  io.observe(el);
 })();
 </script>
-
 </body>
 </html>

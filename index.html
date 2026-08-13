@@ -47,15 +47,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --void: #000000;
-  --carbon: #181818;
-  --graphite: #1F1F1F;
-  --slag: #272727;
-  --ink: #F5F3F0;
-  --mute: #A39E97;
-  --faint: #6E6862;
-  --line: rgba(245, 243, 240, 0.1);
-  --accent: #FF5722;
+  --void: #0A0A0B;
+  --carbon: #131316;
+  --graphite: #1C1C20;
+  --slag: #26262C;
+  --ink: #FAFAF9;
+  --mute: #A1A1AA;
+  --faint: #71717A;
+  --line: rgba(250, 250, 249, 0.08);
+  --line-strong: rgba(250, 250, 249, 0.14);
+  --accent: #FF7A45;
+  --accent-hover: #FF8B5C;
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
   --t: 250ms;
   --text-xs: 12px;
@@ -85,13 +87,25 @@ body {
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  z-index: 0;
 }
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+}
+@media (prefers-reduced-motion: reduce) { .grain { display: none; } }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3 { text-wrap: balance; font-weight: 600; }
 p { text-wrap: pretty; }
 code, .mono { font-family: "Geist Mono", ui-monospace, monospace; }
-::selection { background: rgba(255, 87, 34, 0.28); color: var(--ink); }
+::selection { background: rgba(255, 122, 69, 0.28); color: var(--ink); }
 
 .skip {
   position: absolute;
@@ -110,7 +124,7 @@ code, .mono { font-family: "Geist Mono", ui-monospace, monospace; }
 nav {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 30;
   background: var(--void);
   border-bottom: 1px solid var(--line);
 }
@@ -145,12 +159,12 @@ button.nav-cta, button.btn {
   cursor: pointer;
 }
 
-.hero { padding: 64px 0 80px; }
+.hero { padding: 96px 0 64px; }
 .hero-grid {
-  display: grid;
-  grid-template-columns: minmax(280px, 1fr) minmax(300px, 1.15fr);
-  gap: 40px;
-  align-items: center;
+  display: block;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
 }
 .hero-kicker {
   font-family: "Geist Mono", ui-monospace, monospace;
@@ -165,9 +179,8 @@ button.nav-cta, button.btn {
   font-size: var(--text-5xl);
   line-height: 1;
   letter-spacing: -0.022em;
-  max-width: 18ch;
   margin-bottom: 24px;
-  background: linear-gradient(90deg, #ffffff, #9b9b9b);
+  background: linear-gradient(180deg, #FAFAF9 0%, #D4D4D8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -178,18 +191,21 @@ button.nav-cta, button.btn {
   letter-spacing: -0.01em;
   color: var(--ink);
   max-width: 42rem;
-  margin-bottom: 32px;
+  margin: 0 auto 32px;
 }
 .install {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   padding: 8px 8px 8px 16px;
   background: var(--carbon);
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  margin-bottom: 24px;
+  margin: 0 auto 24px;
+  width: fit-content;
   font-size: 14px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
 }
 .install button {
   border: 0;
@@ -204,7 +220,7 @@ button.nav-cta, button.btn {
 }
 .install button { transition: color var(--t) var(--ease); }
 .install button:hover { color: var(--ink); }
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; justify-content: center; }
 .btn {
   display: inline-flex;
   align-items: center;
@@ -223,12 +239,12 @@ button.nav-cta, button.btn {
 .btn-fill:hover { filter: brightness(1.06); }
 .btn-line { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-line:hover { border-color: var(--mute); }
-.proof-line { font-size: 14px; line-height: 20px; color: var(--mute); }
+.proof-line { font-size: 14px; line-height: 20px; color: var(--mute); text-align: center; }
 .proof-line strong { color: var(--ink); font-weight: 500; }
 
 .band, .tagline, .close, .hero { scroll-margin-top: 72px; }
-.band { padding: var(--section) 0; }
-.band-alt { background: var(--carbon); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.band { padding: var(--section) 0; border-top: 1px solid var(--line); }
+.band-alt { background: var(--void); }
 .head { margin-bottom: 48px; max-width: 640px; }
 .head h2 {
   font-size: var(--text-4xl);
@@ -238,16 +254,6 @@ button.nav-cta, button.btn {
 }
 .head p { font-size: var(--text-base); line-height: 24px; color: var(--mute); }
 
-.frame {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  background: #111;
-}
-.frame iframe { width: 100%; height: 100%; border: 0; display: block; }
-.hero .frame { margin-top: 0; }
-.hero-poster { display: none; }
 .hero-still {
   display: flex;
   flex-direction: column;
@@ -255,7 +261,7 @@ button.nav-cta, button.btn {
   gap: 10px;
   min-height: 200px;
   padding: 20px;
-  background: #1a1a1a;
+  background: var(--carbon);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   position: relative;
@@ -283,19 +289,61 @@ button.nav-cta, button.btn {
   text-transform: uppercase;
   color: var(--mute);
 }
-.themes {
+
+.demo-section { padding: 96px 0; border-top: 1px solid var(--line); }
+.demo-frame {
+  max-width: 960px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--carbon);
+  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.02);
+}
+.demo-chrome {
   display: flex;
+  align-items: center;
   gap: 8px;
-  overflow-x: auto;
-  padding: 4px 0 12px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--slag) transparent;
+  height: 32px;
+  padding: 0 12px;
+  background: var(--graphite);
+  border-bottom: 1px solid var(--line);
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-red { background: #FF5F57; }
+.dot-yellow { background: #FEBC2E; }
+.dot-green { background: #28C840; }
+.chrome-url {
+  margin-left: 8px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--mute);
+  letter-spacing: 0.02em;
+}
+.demo-stage { aspect-ratio: 16 / 9; background: #111; }
+.demo-stage iframe { width: 100%; height: 100%; border: 0; display: block; }
+.demo-poster { display: none; }
+.demo-caption {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--mute);
+}
+.demo-caption a { color: var(--ink); border-bottom: 1px solid var(--line); }
+.demo-caption a:hover { border-bottom-color: var(--ink); }
+.themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  padding: 0;
 }
 .theme {
-  flex: 0 0 88px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   text-decoration: none;
   color: var(--mute);
   font-family: "Geist Mono", ui-monospace, monospace;
@@ -303,11 +351,15 @@ button.nav-cta, button.btn {
   line-height: 14px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  transition: border-color var(--t) var(--ease), color var(--t) var(--ease), transform var(--t) var(--ease);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
 }
+.theme:hover { color: var(--ink); border-color: var(--line-strong); transform: translateY(-1px); }
 .theme .sw {
-  height: 48px;
-  border: 1px solid var(--line);
+  height: 80px;
+  border-radius: 4px;
   position: relative;
+  overflow: hidden;
 }
 .theme .sw i {
   position: absolute;
@@ -316,15 +368,9 @@ button.nav-cta, button.btn {
   bottom: 0;
   height: 6px;
 }
-.theme { transition: color var(--t) var(--ease); }
-.theme[href]:hover { color: var(--ink); }
-.theme .sw { transition: outline-color var(--t) var(--ease); }
-.theme[href] .sw { outline: 1px solid transparent; }
-.theme[href]:hover .sw { outline-color: var(--ink); }
 .deck-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  justify-content: center;
   margin-top: 24px;
 }
 .deck-row a {
@@ -350,8 +396,9 @@ button.nav-cta, button.btn {
 .benefit p { color: var(--mute); }
 
 .tagline {
-  padding: 160px 0;
-  background: var(--void);
+  padding: 96px 0;
+  background: radial-gradient(ellipse 60% 80% at center, var(--carbon) 0%, var(--void) 75%);
+  border-top: 1px solid var(--line);
 }
 .tagline p {
   font-size: var(--text-5xl);
@@ -377,8 +424,10 @@ button.nav-cta, button.btn {
 .step:first-child { border-top: 1px solid var(--line); }
 .step-n {
   font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 14px;
-  color: var(--mute);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.08em;
   padding-top: 4px;
 }
 .step h3 { font-size: var(--text-lg); line-height: 28px; letter-spacing: -0.012em; margin-bottom: 8px; }
@@ -406,7 +455,9 @@ button.nav-cta, button.btn {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
+  align-items: start;
 }
+.split .head { position: sticky; top: 96px; }
 .list { display: flex; flex-direction: column; gap: 16px; }
 .list li {
   list-style: none;
@@ -449,7 +500,12 @@ button.nav-cta, button.btn {
   border-radius: 4px;
 }
 
-.close { padding: 160px 0; text-align: center; }
+.close {
+  padding: 96px 0;
+  text-align: center;
+  background: radial-gradient(ellipse 60% 80% at center, var(--carbon) 0%, var(--void) 75%);
+  border-top: 1px solid var(--line);
+}
 .close h2 {
   font-size: var(--text-5xl);
   line-height: 1;
@@ -473,18 +529,20 @@ footer a:hover { color: var(--ink); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 @media (max-width: 800px) {
-  .hero { padding: 48px 0 64px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero { padding: 64px 0 48px; }
   .hero h1 { font-size: var(--text-4xl); line-height: 40px; }
   .hero .sub { font-size: var(--text-base); line-height: 24px; }
-  .hero .frame { display: none; }
-  .hero-poster { display: block; }
+  .demo-stage iframe { display: none; }
+  .demo-stage { aspect-ratio: auto; min-height: 200px; }
+  .demo-poster { display: flex; }
   .tagline p, .close h2 { font-size: var(--text-3xl); line-height: 36px; }
   .head h2 { font-size: var(--text-3xl); line-height: 36px; }
   .nav-links { display: none; }
   .split { grid-template-columns: 1fr; gap: 32px; }
+  .split .head { position: static; }
   .band { padding: 80px 0; }
-  .tagline, .close { padding: 96px 0; }
+  .tagline, .close { padding: 80px 0; }
+  .demo-section { padding-top: 64px; padding-bottom: 64px; }
   .hero .cta-row .install-btn { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -495,6 +553,7 @@ footer a:hover { color: var(--ink); }
 </style>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
 <nav>
   <div class="wrap">
@@ -509,35 +568,43 @@ footer a:hover { color: var(--ink); }
   </div>
 </nav>
 
-<main id="main">
+<main id="main" style="position: relative; z-index: 2;">
 <section class="hero" id="top">
   <div class="wrap hero-grid">
-    <div>
-      <p class="hero-kicker">Local skill · MIT · no API keys</p>
-      <h1>Give your coding agent<br>a deck workflow.</h1>
-      <p class="sub">A skill file for Claude Code, Cursor, Codex, Windsurf, or Aider. Pyramid Principle, color checks, HTML on disk, then PPTX or PDF. Not a slide product.</p>
-      <div class="install" id="install">
-        <code id="cmd">npx deckmason init</code>
-        <button type="button" class="install-btn" id="copy">Copy</button>
-      </div>
-      <div class="cta-row">
-        <button type="button" class="btn btn-fill install-btn">Copy install</button>
-        <a class="btn btn-line" href="https://github.com/a692570/deckmason">View the repo</a>
-      </div>
-      <p class="proof-line"><strong>31 themes</strong>, plus Kami Warm Editorial. Arrow keys move the deck. N opens notes.</p>
+    <p class="hero-kicker">Local skill · MIT · no API keys</p>
+    <h1>Give your coding agent<br>a deck workflow.</h1>
+    <p class="sub">A skill file for Claude Code, Cursor, Codex, Windsurf, or Aider. Pyramid Principle, color checks, HTML on disk, then PPTX or PDF. Not a slide product.</p>
+    <div class="install" id="install">
+      <code id="cmd">npx deckmason init</code>
+      <button type="button" class="install-btn" id="copy">Copy</button>
     </div>
-    <div id="demo">
-      <div class="frame">
-        <iframe src="demo/example-deck.html" title="DeckMason Bold Signal demo deck"></iframe>
+    <div class="cta-row">
+      <button type="button" class="btn btn-fill install-btn">Copy install</button>
+      <a class="btn btn-line" href="https://github.com/a692570/deckmason">View the repo</a>
+    </div>
+    <p class="proof-line"><strong>31 themes</strong>, plus Kami Warm Editorial. Arrow keys move the deck. N opens notes.</p>
+  </div>
+</section>
+
+<section class="demo-section" id="demo" aria-label="Live demo">
+  <div class="wrap">
+    <div class="demo-frame">
+      <div class="demo-chrome">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+        <span class="chrome-url">demo/example-deck.html</span>
       </div>
-      <a class="hero-poster" href="demo/example-deck.html">
-        <div class="hero-still">
+      <div class="demo-stage">
+        <iframe src="demo/example-deck.html" title="DeckMason Bold Signal demo deck"></iframe>
+        <a class="hero-still demo-poster" href="demo/example-deck.html">
           <em>Bold Signal · live deck</em>
           <b>Design quality is a system, not a prompt</b>
           <em>Open full screen</em>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
+    <p class="demo-caption">Bold Signal theme · 9 slides · arrow keys to navigate · <a href="demo/example-deck.html">Open full screen</a></p>
   </div>
 </section>
 
@@ -582,11 +649,7 @@ footer a:hover { color: var(--ink); }
       <div class="theme" role="listitem"><span class="sw" style="background:#f5f4ed"><i style="background:#1B365D"></i></span>Kami Editorial</div>
     </div>
     <p class="deck-row">
-      <a href="demo/example-deck.html">Bold Signal, full screen</a>
-      <a href="examples/paper-ink-editorial-essay.html">Paper and Ink</a>
-      <a href="examples/deep-space-keynote-vision.html">Deep Space</a>
-      <a href="examples/swiss-modern-design-talk.html">Swiss Modern</a>
-      <a href="https://github.com/a692570/deckmason/blob/main/STYLE_PRESETS.md">All specs</a>
+      <a href="https://github.com/a692570/deckmason/blob/main/STYLE_PRESETS.md">View all 31 specs</a>
     </p>
   </div>
 </section>
@@ -797,7 +860,7 @@ footer a:hover { color: var(--ink); }
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
       gsap.to(spans, {
-        color: "#F5F3F0",
+        color: "#FAFAF9",
         duration: 0.45,
         stagger: 0.08,
         ease: "cubic-bezier(0.32, 0.72, 0, 1)",

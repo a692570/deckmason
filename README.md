@@ -174,6 +174,28 @@ The `SKILL.md` covers the full pipeline:
 - Industry Theme Constraints (banned combinations per audience)
 - Chart Anti-Patterns enforced at generation time
 
+## Visual Preview Mode
+
+Instead of asking 4 text questions, generate 3 quick visual preview slides using 3 different themes and let the user pick a direction visually.
+
+```bash
+python3 scripts/preview_themes.py "Your Topic Here"
+```
+
+Creates 3 single-slide HTML files in `previews/`:
+- `preview-1-dark.html` (Deep Space theme, dark, cool, visionary)
+- `preview-2-light.html` (Modern SaaS theme, light, clean, professional)
+- `preview-3-bold.html` (Bold Signal theme, high-contrast, warm, confident)
+
+Open all 3 in your browser, pick a direction, and tell your agent. The chosen direction becomes the aesthetic direction for the full deck, skipping the text-based proposal. The 4 text questions remain as a fallback if you prefer text.
+
+```
+"Create a pitch deck about AI agents"
+-> Agent runs: python3 scripts/preview_themes.py "AI Agents"
+-> You open the 3 previews and pick "dark"
+-> Agent proceeds with the Deep Space aesthetic direction
+```
+
 ## PPT Import
 
 Convert an existing .pptx file into DeckMason's HTML slide format. The import script reads the presentation and extracts slide content, images, theme colors, and fonts into a structured JSON file.

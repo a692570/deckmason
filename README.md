@@ -25,7 +25,10 @@ Generate production-quality HTML slide decks with any AI coding agent. 31 curate
 - [What It Does](#what-it-does)
 - [Themes](#themes)
 - [Workflow](#workflow)
+- [Visual Preview Mode](#visual-preview-mode)
+- [PPT Import](#ppt-import)
 - [Brand Import](#brand-import)
+- [GSAP Animations](#gsap-animations)
 - [Output](#output)
 - [Requirements](#requirements)
 - [Live Demo](#live-demo)
@@ -156,26 +159,26 @@ The `SKILL.md` covers the full pipeline:
 
 | Phase | What happens |
 |-------|-------------|
-| Pre-Flight Scoping | 4 questions: aesthetic direction, page count, text density, motion |
-| Phase 0: Brief | Audience, arc, ask, success definition |
+| Pre-Flight Scoping | Visual preview (3 themes) or 4 text questions: aesthetic direction, page count, text density, motion |
+| Phase 0: Brief | Audience, arc, ask, success definition. Also: PPT import workflow |
 | Phase 1: Structure | Pyramid Principle, assertion-evidence headings, thesis, contrast beats |
 | Phase 2: Outline | Page Type Taxonomy, 10 Editorial Layout Types, slide count scaling |
-| Phase 3: HTML | Canvas Scale Architecture, Viewport Fitting, Vertical Budget Math, One Idea Per Slide |
+| Phase 3: HTML | Canvas Scale Architecture, Viewport Fitting, Vertical Budget Math, One Idea Per Slide, GSAP animations |
 | Phase 4: Images | 7 named image roles, image type taxonomy, Chart Anti-Patterns |
 | Phase 5: Polish | Page Rhythm, Font Hierarchy, AI Tells checklist, Designer's Eye Critique |
 | Phase 6: Export | PPTX (python-pptx or pptxgenjs), PDF, Vercel deploy |
 
 ### Specialized modes
 
-- **Cinematic Slide Mode** — 22-second film clip with 5 scenes for workflow demos
-- **Swiss International Strict Mode** — Vignelli-inspired ultra-clean grid design
-- **Editorial Web Deck Mode** — magazine-style keynote decks
-- **Image Slides Mode** — PNG deck output for social media sharing
-- **HTML Slide Template Library** — 32 production-quality templates from `beautiful-html-templates`
-- **Theme Variation Protocol** — 3 distinct visual directions before locking
-- **Design Philosophy School System** — 5 schools for vague briefs
-- **Speaker Notes Overlay** — N key toggle, auto-updating per slide
-- **Brand Import** — extract theme from PPTX, website URL, or brand guidelines PDF
+- **Cinematic Slide Mode**: 22-second film clip with 5 scenes for workflow demos
+- **Swiss International Strict Mode**: Vignelli-inspired ultra-clean grid design
+- **Editorial Web Deck Mode**: magazine-style keynote decks
+- **Image Slides Mode**: PNG deck output for social media sharing
+- **HTML Slide Template Library**: 32 production-quality templates from `beautiful-html-templates`
+- **Theme Variation Protocol**: 3 distinct visual directions before locking
+- **Design Philosophy School System**: 5 schools for vague briefs
+- **Speaker Notes Overlay**: N key toggle, auto-updating per slide
+- **Brand Import**: extract theme from PPTX, website URL, or brand guidelines PDF
 
 ### Quality guardrails built into the workflow
 
@@ -302,8 +305,14 @@ Two PPTX export paths:
 ```
 
 ```
+"Convert company-deck.pptx into an HTML presentation"
+"Import sales-deck.pptx and restyle it with the Deep Space theme"
+```
+
+```
 "Make 3 style options for my deck"
 "Generate slide images for social media sharing"
+"Create a deck with animated GSAP reveals for live presentation"
 ```
 
 ## GSAP Animations
@@ -329,16 +338,38 @@ Every pattern includes a `prefers-reduced-motion` fallback for accessibility. Se
 
 ```
 deckmason/
-├── SKILL.md              # The workflow your agent follows (1045 lines)
-├── STYLE_PRESETS.md      # 31 themes + Kami CSS spec (796 lines)
-├── AGENTS.md             # Operating manual for AI agents
-├── README.md             # This file
-├── MAINTAINER.md         # Sync process from canonical skill
-├── CONTRIBUTING.md       # How to contribute
-├── index.html            # SEO landing page (OG/Twitter/structured data)
-├── LICENSE               # MIT
-└── scripts/
-    └── pptx_export.py    # PowerPoint export (Path A: python-pptx)
+├── SKILL.md                  # Entry point (198 lines, progressive disclosure)
+├── STYLE_PRESETS.md          # 31 themes + Kami CSS spec
+├── AGENTS.md                 # Operating manual for AI agents
+├── README.md                 # This file
+├── MAINTAINER.md             # Sync process from canonical skill
+├── CONTRIBUTING.md           # How to contribute
+├── index.html                # SEO landing page (OG/Twitter/structured data)
+├── LICENSE                   # MIT
+├── package.json              # npm install support
+├── references/               # Phase detail files (load on demand)
+│   ├── phase0-brief.md       # Phase 0: Brief + PPT import workflow
+│   ├── phase1-structure.md   # Phase 1: Pyramid Principle, thesis, contrast beats
+│   ├── phase2-outline.md     # Phase 2: Slide types, layout types, scaling
+│   ├── phase3-html.md        # Phase 3: Canvas, viewport fitting, budget math
+│   ├── phase4-images.md      # Phase 4: Image roles, chart anti-patterns
+│   ├── phase5-polish.md      # Phase 5: Page rhythm, color theory, AI tells
+│   ├── phase6-export.md      # Phase 6: PPTX, PDF, Vercel deploy
+│   ├── specialized-modes.md  # Cinematic, Swiss, Editorial, Templates, Brand Import
+│   ├── quality-guardrails.md # Banned words, self-check, troubleshooting
+│   └── animation-patterns.md # GSAP animation patterns and reduced-motion fallbacks
+├── scripts/
+│   ├── pptx_export.py        # PowerPoint export (Path A: python-pptx)
+│   ├── pptx_import.py        # PPTX import to JSON
+│   ├── preview_themes.py     # Generate 3 visual preview slides
+│   └── deckmason-cli.js      # CLI for npm install
+├── demo/
+│   ├── example-deck.html     # 9-slide demo deck
+│   └── og-cover.png
+└── examples/
+    ├── deep-space-keynote-vision.html
+    ├── paper-ink-editorial-essay.html
+    └── swiss-modern-design-talk.html
 ```
 
 ## Design Principles
@@ -355,7 +386,7 @@ deckmason/
 
 New themes, better export scripts, workflow improvements. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-PRs welcome. Before submitting, run the self-check checklist from `SKILL.md` against any deck you generate with your changes.
+PRs welcome. Before submitting, run the self-check checklist from `references/quality-guardrails.md` against any deck you generate with your changes.
 
 ## License
 

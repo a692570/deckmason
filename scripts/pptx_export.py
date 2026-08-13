@@ -7,7 +7,7 @@ Usage:
     python pptx_export.py input.html [--output output.pptx]
 
 This is Path A (python-pptx, image-based layout detection). For editable text
-boxes (Path B), use pptxgenjs in a browser context — see SKILL.md Phase 6 for
+boxes (Path B), use pptxgenjs in a browser context. See SKILL.md Phase 6 for
 the DOM-traversal approach. Path A is simpler; Path B produces PowerPoint
 files where every text element is clickable and editable.
 

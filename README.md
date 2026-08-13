@@ -306,6 +306,25 @@ Two PPTX export paths:
 "Generate slide images for social media sharing"
 ```
 
+## GSAP Animations
+
+DeckMason supports optional GSAP-powered animations for slide entrance/exit and element reveals. Animations are optional: PDF, PPTX, and Google Slides exports are static snapshots, so every slide must work as a still frame.
+
+Available patterns:
+- **fade-in-up**: cover titles, section headers, general reveals
+- **stagger-reveal**: bullet lists, card grids, sequential item reveals
+- **clip-path-reveal**: data slides, big numbers, dramatic wipes
+- **scale-in**: big number slides, hero images, center-stage elements
+- **slide-in-left / slide-in-right**: comparison slides, split layouts
+- **blur-in**: keynote moments, cinematic transitions, editorial reveals
+
+Every pattern includes a `prefers-reduced-motion` fallback for accessibility. See `references/animation-patterns.md` for full code snippets, when-to-use guidance, and integration with the Intersection Observer system.
+
+```
+"Create a deck with animated reveals for live presentation"
+"Add GSAP stagger animations to the bullet lists"
+```
+
 ## Repository Layout
 
 ```

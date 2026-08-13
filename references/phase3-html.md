@@ -144,7 +144,7 @@ If the generated HTML presentation exceeds ~1000 lines, split into multiple file
 
 Motion is optional in decks. Use it only for live HTML review, keynote-style playback, or a specific walkthrough moment. PDF, PPTX, and Google Slides imports are static snapshots, so every slide must work as a still frame.
 
-For optional GSAP-powered animations, see `references/animation-patterns.md` for available patterns, when to use each, CDN inclusion, and prefers-reduced-motion fallbacks.
+For optional GSAP-powered animations, see `references/animation-patterns.md` for available patterns (fade-in-up, stagger-reveal, clip-path-reveal, scale-in, slide-in-left/right, blur-in), when to use each, CDN inclusion, and prefers-reduced-motion fallbacks. Use these when the user wants live HTML review or keynote-style playback beyond the standard CSS transitions.
 
 | Feeling | Animation approach |
 |---|---|

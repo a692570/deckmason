@@ -722,17 +722,17 @@ Use when the 11 original presets don't fit the mood or when the user wants somet
 
 ---
 
-## Kami Warm Editorial — Full CSS Spec
+## Kami Warm Editorial: Full CSS Spec
 
 Use when: user wants a "polished", "editorial", "print-quality", or "paper-like" slide deck; research presentations, white papers converted to slides, academic decks, document-style investor briefs, or any context where "Warm Editorial" is the selected theme.
 
 **Design invariants (enforce all):**
-- Canvas background: `#f5f4ed` (parchment) — never pure white
-- Single accent: ink-blue `#1B365D` — no second chromatic color
+- Canvas background: `#f5f4ed` (parchment): never pure white
+- Single accent: ink-blue `#1B365D`: no second chromatic color
 - All grays warm-toned (yellow-brown undertone)
 - Serif (Newsreader) for display titles; sans (Inter) for body and labels
-- Serif weight locked at 500 — no bold
-- Depth via ring or whisper shadow only — no hard drop shadows
+- Serif weight locked at 500: no bold
+- Depth via ring or whisper shadow only: no hard drop shadows
 - No italic anywhere
 
 **Full CSS token set:**
@@ -804,7 +804,7 @@ Use when: user wants a "polished", "editorial", "print-quality", or "paper-like"
 ```
 Content philosophy: comments should outnumber code lines. Show logic, not syntax.
 
-**Tag backgrounds — always solid hex (never rgba):**
+**Tag backgrounds: always solid hex (never rgba):**
 | Alpha intent | Solid hex |
 |---|---|
 | 0.08 (lightest) | `#EEF2F7` |
@@ -822,7 +822,7 @@ Content philosophy: comments should outnumber code lines. Show logic, not syntax
 | R7 | Slide padding-top 72-80px |
 | R8 | Images: `object-fit: contain` + flex centering, never stretch |
 | R9 | `.kami-slide-footer` absolutely positioned to bottom for page number + deck mark |
-| R10 | Code: pseudocode style — more comment lines than code lines |
+| R10 | Code: pseudocode style: more comment lines than code lines |
 
 **When to use Kami over other themes:**
 - Research / academic presentations

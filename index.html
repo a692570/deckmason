@@ -286,21 +286,32 @@ section { position: relative; }
 
 /* FAQ */
 .faq-section { padding: var(--s-20) 0; }
-.faq-list { max-width: 720px; margin: var(--s-10) auto 0; }
-.faq-item { border-bottom: 1px solid var(--line); }
-.faq-item:first-child { border-top: 1px solid var(--line); }
+.faq-list { max-width: 720px; margin: var(--s-10) auto 0; display: grid; gap: var(--s-3); }
+.faq-item {
+  border: 1px solid var(--line-strong); border-radius: var(--r-lg);
+  background: var(--surface); overflow: hidden;
+  transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+.faq-item:hover { box-shadow: 0 8px 20px rgba(36,31,26,0.06); }
+.faq-item.open { border-color: var(--accent); }
 .faq-q {
   width: 100%; background: none; border: none; text-align: left;
   display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
-  padding: var(--s-5) 0; font-size: var(--text-lg); font-weight: 500; color: var(--ink);
+  padding: var(--s-4) var(--s-5); font-size: var(--text-lg); font-weight: 500; color: var(--ink);
 }
-.faq-q iconify-icon { font-size: 20px; color: var(--faint); flex: none; transition: transform var(--t) var(--ease); }
-.faq-item.open .faq-q iconify-icon { transform: rotate(180deg); color: var(--accent); }
+.faq-q-icon {
+  width: 28px; height: 28px; border-radius: var(--r-full); flex: none;
+  background: var(--bg-alt); display: flex; align-items: center; justify-content: center;
+  transition: background var(--t) var(--ease), transform var(--t) var(--ease);
+}
+.faq-q-icon iconify-icon { font-size: 16px; color: var(--mute); }
+.faq-item.open .faq-q-icon { background: var(--accent); transform: rotate(45deg); }
+.faq-item.open .faq-q-icon iconify-icon { color: var(--accent-ink); }
 .faq-a {
   max-height: 0; overflow: hidden; transition: max-height 350ms var(--ease);
   color: var(--mute); font-size: var(--text-base); line-height: var(--lh-lg);
 }
-.faq-a p { padding-bottom: var(--s-5); max-width: 620px; }
+.faq-a p { padding: 0 var(--s-5) var(--s-5); max-width: 620px; }
 .faq-item.open .faq-a { max-height: 240px; }
 
 /* final CTA */
@@ -585,35 +596,35 @@ footer .flinks { display: flex; gap: var(--s-6); }
       </div>
       <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">What agents does this work with?<iconify-icon icon="ph:caret-down" aria-hidden="true"></iconify-icon></button>
+          <button class="faq-q" aria-expanded="false"><span>What agents does this work with?</span><span class="faq-q-icon"><iconify-icon icon="ph:plus" aria-hidden="true"></iconify-icon></span></button>
           <div class="faq-a"><p>Claude Code, Cursor, Codex CLI, Windsurf, Aider, OpenClaw, or any agent that reads files and runs scripts.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Do I need API keys or a cloud account?<iconify-icon icon="ph:caret-down" aria-hidden="true"></iconify-icon></button>
+          <button class="faq-q" aria-expanded="false"><span>Do I need API keys or a cloud account?</span><span class="faq-q-icon"><iconify-icon icon="ph:plus" aria-hidden="true"></iconify-icon></span></button>
           <div class="faq-a"><p>No. Everything runs through your existing coding agent and local scripts, without any additional API keys or a cloud dependency.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Can I import an existing PowerPoint?<iconify-icon icon="ph:caret-down" aria-hidden="true"></iconify-icon></button>
+          <button class="faq-q" aria-expanded="false"><span>Can I import an existing PowerPoint?</span><span class="faq-q-icon"><iconify-icon icon="ph:plus" aria-hidden="true"></iconify-icon></span></button>
           <div class="faq-a"><p><code>pptx_import.py</code> extracts slide content, images, theme colors, and fonts into a JSON file your agent maps onto DeckMason's slide types.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Can I export back to PowerPoint or PDF?<iconify-icon icon="ph:caret-down" aria-hidden="true"></iconify-icon></button>
+          <button class="faq-q" aria-expanded="false"><span>Can I export back to PowerPoint or PDF?</span><span class="faq-q-icon"><iconify-icon icon="ph:plus" aria-hidden="true"></iconify-icon></span></button>
           <div class="faq-a"><p>Yes, both. PPTX via python-pptx or pptxgenjs, PDF via browser print or headless Chrome.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">How do I match our brand?<iconify-icon icon="ph:caret-down" aria-hidden="true"></iconify-icon></button>
+          <button class="faq-q" aria-expanded="false"><span>How do I match our brand?</span><span class="faq-q-icon"><iconify-icon icon="ph:plus" aria-hidden="true"></iconify-icon></span></button>
           <div class="faq-a"><p>Extract a theme from a PPTX, a website URL, or a brand guidelines PDF instead of picking a preset.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">What is visual preview mode?<iconify-icon icon="ph:caret-down" aria-hidden="true"></iconify-icon></button>
+          <button class="faq-q" aria-expanded="false"><span>What is visual preview mode?</span><span class="faq-q-icon"><iconify-icon icon="ph:plus" aria-hidden="true"></iconify-icon></span></button>
           <div class="faq-a"><p>Instead of four text questions, generate three quick preview slides in different themes and pick a direction by eye.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Why is SKILL.md short if the workflow has 7 phases?<iconify-icon icon="ph:caret-down" aria-hidden="true"></iconify-icon></button>
+          <button class="faq-q" aria-expanded="false"><span>Why is SKILL.md short if the workflow has 7 phases?</span><span class="faq-q-icon"><iconify-icon icon="ph:plus" aria-hidden="true"></iconify-icon></span></button>
           <div class="faq-a"><p>Progressive disclosure. SKILL.md is the entry point; each phase's detail lives in <code>references/</code> and loads only when the agent needs it.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Is it free?<iconify-icon icon="ph:caret-down" aria-hidden="true"></iconify-icon></button>
+          <button class="faq-q" aria-expanded="false"><span>Is it free?</span><span class="faq-q-icon"><iconify-icon icon="ph:plus" aria-hidden="true"></iconify-icon></span></button>
           <div class="faq-a"><p>Yes. MIT licensed, free for personal and commercial use.</p></div>
         </div>
       </div>

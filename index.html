@@ -64,7 +64,7 @@
    - Mobile breakpoints: 800px and 480px
    New palette: teal accent #2DD4BF (replaces orange)
    New copy: contrarian reframe throughout
-   Demo: pointer-events:none iframe + click-to-interact overlay
+   Demo: poster image from og-cover.png, links to live deck
    ========================================================= */
 
 :root {
@@ -323,32 +323,34 @@ nav .wrap {
   aspect-ratio: 16 / 9;
   background: var(--bg-void);
   position: relative;
+  overflow: hidden;
 }
-.demo-stage iframe {
+.demo-poster-link {
+  display: block;
   width: 100%;
   height: 100%;
-  border: 0;
+  position: relative;
+  text-decoration: none;
+}
+.demo-poster-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  pointer-events: none;
+  transition: transform 400ms var(--ease);
 }
-.demo-overlay {
+.demo-poster-link:hover img { transform: scale(1.02); }
+.demo-poster-badge {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  z-index: 5;
-  transition: opacity var(--t) var(--ease);
-}
-.demo-overlay.hidden { opacity: 0; pointer-events: none; }
-.demo-overlay-btn {
+  bottom: var(--s-4);
+  right: var(--s-4);
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  padding: var(--s-3) var(--s-6);
-  background: var(--bg-elev);
+  padding: var(--s-2) var(--s-4);
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--line-strong);
   border-radius: var(--r-full);
   color: var(--ink);
@@ -356,38 +358,11 @@ nav .wrap {
   font-weight: 500;
   transition: background var(--t) var(--ease), border-color var(--t) var(--ease);
 }
-.demo-overlay-btn:hover { background: var(--bg-overlay); border-color: var(--accent); }
-.demo-overlay-btn .iconify-icon { font-size: var(--text-lg); color: var(--accent); }
-.demo-poster {
-  display: none;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--s-2);
-  min-height: 200px;
-  padding: var(--s-6);
-  background: var(--bg-elev);
+.demo-poster-link:hover .demo-poster-badge {
+  background: rgba(0, 0, 0, 0.88);
+  border-color: var(--accent);
 }
-.demo-poster .label {
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: var(--text-xs);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--mute);
-}
-.demo-poster .title {
-  font-size: var(--text-xl);
-  line-height: var(--lh-xl);
-  font-weight: 600;
-  letter-spacing: -0.012em;
-  color: var(--ink);
-}
-.demo-poster .open {
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: var(--text-xs);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
+.demo-poster-badge .iconify-icon { font-size: var(--text-base); color: var(--accent); }
 .demo-caption {
   margin-top: var(--s-4);
   text-align: center;
@@ -676,10 +651,8 @@ footer a:hover { color: var(--ink); }
   .hero { padding: var(--s-16) 0 var(--s-12); }
   .hero h1 { font-size: var(--text-4xl); line-height: var(--lh-4xl); }
   .hero .sub { font-size: var(--text-base); line-height: var(--lh-base); }
-  .demo-stage iframe { display: none; }
-  .demo-overlay { display: none; }
-  .demo-stage { aspect-ratio: auto; min-height: 240px; display: flex; align-items: stretch; padding: var(--s-6); }
-  .demo-poster { display: flex; }
+  .demo-stage { aspect-ratio: auto; min-height: 200px; }
+  .demo-poster-badge { font-size: var(--text-xs); padding: var(--s-1) var(--s-3); }
   .tagline p, .close h2 { font-size: var(--text-3xl); line-height: var(--lh-3xl); }
   .head h2 { font-size: var(--text-3xl); line-height: var(--lh-3xl); }
   .nav-links { display: none; }
@@ -770,21 +743,16 @@ footer a:hover { color: var(--ink); }
         <span class="chrome-url">demo/example-deck.html</span>
       </div>
       <div class="demo-stage">
-        <iframe src="demo/example-deck.html" title="DeckMason Bold Signal demo deck" loading="lazy" id="demo-iframe"></iframe>
-        <div class="demo-overlay" id="demo-overlay">
-          <button class="demo-overlay-btn" id="demo-play" type="button">
+        <a class="demo-poster-link" href="demo/example-deck.html" aria-label="Open the Bold Signal demo deck full screen">
+          <img src="demo/og-cover.png" alt="DeckMason Bold Signal demo deck preview" loading="lazy" width="1200" height="630">
+          <span class="demo-poster-badge">
             <iconify-icon icon="ph:play" aria-hidden="true"></iconify-icon>
-            Click to interact
-          </button>
-        </div>
-        <a class="demo-poster" href="demo/example-deck.html">
-          <span class="label">Bold Signal · live deck</span>
-          <span class="title">Design quality is a system, not a prompt</span>
-          <span class="open">Open full screen</span>
+            Open live deck
+          </span>
         </a>
       </div>
     </div>
-    <p class="demo-caption reveal">Bold Signal theme · 9 slides · arrow keys navigate · <a href="demo/example-deck.html">Open full screen</a></p>
+    <p class="demo-caption reveal">Bold Signal theme · 9 slides · <a href="demo/example-deck.html">Open the live deck</a></p>
   </div>
 </section>
 
@@ -1091,37 +1059,6 @@ footer a:hover { color: var(--ink); }
     document.querySelectorAll(".reveal").forEach(function (el) { revealObs.observe(el); });
   } else {
     document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
-  }
-
-  // Demo: click-to-interact overlay (fixes scroll-capture issue)
-  // iframe has pointer-events: none by default so page scroll never gets captured
-  // clicking the overlay enables pointer-events on the iframe and hides the overlay
-  var overlay = document.getElementById("demo-overlay");
-  var iframe = document.getElementById("demo-iframe");
-  var demoSection = document.getElementById("demo");
-  if (overlay && iframe) {
-    var playBtn = document.getElementById("demo-play");
-    var enableInteraction = function () {
-      iframe.style.pointerEvents = "auto";
-      overlay.classList.add("hidden");
-    };
-    if (playBtn) {
-      playBtn.addEventListener("click", function (e) { e.stopPropagation(); enableInteraction(); });
-    }
-    overlay.addEventListener("click", enableInteraction);
-
-    // Reset when scrolled away (so re-entering the section starts fresh)
-    if ("IntersectionObserver" in window) {
-      var demoObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) {
-            iframe.style.pointerEvents = "none";
-            overlay.classList.remove("hidden");
-          }
-        });
-      }, { threshold: 0 });
-      demoObs.observe(demoSection);
-    }
   }
 })();
 </script>

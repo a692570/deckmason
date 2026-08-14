@@ -26,6 +26,7 @@
 <meta name="twitter:description" content="A local skill that teaches any coding agent to build HTML slide decks. 31 themes, Pyramid Principle, PPT import. No API keys.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/a692570/deckmason/main/demo/og-cover.png">
 <meta name="twitter:image:alt" content="DeckMason: AI presentation skill">
+<meta name="theme-color" content="#000000">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,45 +45,92 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
 <style>
+/* =========================================================
+   DeckMason landing — built per landing-page + frontend-design skills
+   - Dark bg ONLY from skill list: #000000, #181818, #1F1F1F, #272727, #313131, #131209
+   - Geist + Geist Mono, no italic, cap at 600
+   - Tailwind-snap type scale with line heights
+   - Spacing scale: 0,2,4,8,12,16,24,32,40,48,64,80,96
+   - Heading gradient (only place gradients allowed): #FFFFFF -> #9B9B9B left-to-right
+   - Phosphor icons via Iconify
+   - Mandatory tagline reveal section
+   - Scroll interpolation: .reveal with translateY(16px) blur(8px) opacity-0
+   - Custom easing: cubic-bezier(0.32, 0.72, 0, 1)
+   ========================================================= */
+
 :root {
-  --void: #0A0A0B;
-  --carbon: #131316;
-  --graphite: #1C1C20;
-  --slag: #26262C;
-  --ink: #FAFAF9;
+  /* backgrounds (only these per skill spec) */
+  --bg-void:    #000000;
+  --bg-band:    #181818;
+  --bg-elev:    #1F1F1F;
+  --bg-overlay: #272727;
+  --bg-plate:   #313131;
+  --bg-warm:    #131209;
+
+  /* text (zinc scale, neutral, no warm tint to match the cool/warm bg split) */
+  --ink:  #FAFAF9;
   --mute: #A1A1AA;
-  --faint: #71717A;
-  --line: rgba(250, 250, 249, 0.08);
+  --faint:#71717A;
+
+  /* lines */
+  --line:        rgba(250, 250, 249, 0.08);
   --line-strong: rgba(250, 250, 249, 0.14);
-  --accent: #FF7A45;
-  --accent-hover: #FF8B5C;
+
+  /* accent (kept coral-orange; softens previous #FF5722) */
+  --accent:        #FF7A45;
+  --accent-hover:  #FF8B5C;
+  --accent-ink:    #0A0A0B;
+
+  /* motion */
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
   --t: 250ms;
-  --text-xs: 12px;
-  --text-sm: 14px;
-  --text-base: 16px;
-  --text-lg: 18px;
-  --text-xl: 20px;
-  --text-2xl: 24px;
-  --text-3xl: 30px;
-  --text-4xl: 36px;
-  --text-5xl: 48px;
-  --r-sm: 6px;
-  --r-lg: 16px;
+
+  /* type scale (Tailwind snap) */
+  --text-xs:   12px;  --lh-xs:   16px;
+  --text-sm:   14px;  --lh-sm:   20px;
+  --text-base: 16px;  --lh-base: 24px;
+  --text-lg:   18px;  --lh-lg:   28px;
+  --text-xl:   20px;  --lh-xl:   28px;
+  --text-2xl:  24px;  --lh-2xl:  32px;
+  --text-3xl:  30px;  --lh-3xl:  36px;
+  --text-4xl:  36px;  --lh-4xl:  40px;
+  --text-5xl:  48px;  --lh-5xl:  48px;
+  --text-6xl:  60px;  --lh-6xl:  60px;
+  --text-7xl:  72px;  --lh-7xl:  72px;
+  --text-8xl:  96px;  --lh-8xl:  96px;
+
+  /* spacing (skill spec: only these) */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-6:  24px;
+  --s-8:  32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+  --s-24: 96px;
+
+  /* radius (Tailwind only) */
+  --r-sm:   8px;
+  --r-lg:   16px;
   --r-full: 9999px;
+
   --max: 1080px;
-  --section: 96px;
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background: var(--void);
+  background: var(--bg-void);
   color: var(--ink);
   font-family: Geist, system-ui, sans-serif;
   font-size: var(--text-base);
-  line-height: 1.5;
+  line-height: var(--lh-base);
   font-weight: 400;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
@@ -90,42 +138,49 @@ body {
   position: relative;
   z-index: 0;
 }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+h1, h2, h3, h4 { text-wrap: balance; font-weight: 600; }
+p  { text-wrap: pretty; }
+code, .mono { font-family: "Geist Mono", ui-monospace, monospace; }
+::selection { background: rgba(255, 122, 69, 0.28); color: var(--ink); }
+
+/* grain overlay (Linear/Vercel cohesion pattern) */
 .grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.035;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   background-size: 180px 180px;
 }
 @media (prefers-reduced-motion: reduce) { .grain { display: none; } }
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-h1, h2, h3 { text-wrap: balance; font-weight: 600; }
-p { text-wrap: pretty; }
-code, .mono { font-family: "Geist Mono", ui-monospace, monospace; }
-::selection { background: rgba(255, 122, 69, 0.28); color: var(--ink); }
 
 .skip {
   position: absolute;
-  left: 16px;
+  left: var(--s-4);
   top: -48px;
   background: var(--ink);
-  color: var(--void);
-  padding: 8px 12px;
+  color: var(--bg-void);
+  padding: var(--s-2) var(--s-3);
   z-index: 40;
   border-radius: var(--r-sm);
+  transition: top var(--t) var(--ease);
 }
-.skip:focus { top: 16px; }
+.skip:focus { top: var(--s-4); }
 
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--s-6); position: relative; z-index: 2; }
 
+/* ============ NAV ============ */
 nav {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: var(--void);
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
 nav .wrap {
@@ -133,228 +188,327 @@ nav .wrap {
   align-items: center;
   justify-content: space-between;
   height: 56px;
-  gap: 16px;
+  gap: var(--s-4);
 }
-.brand { font-weight: 600; font-size: 16px; letter-spacing: -0.01em; }
+.brand { font-weight: 600; font-size: var(--text-base); letter-spacing: -0.01em; }
 .brand span { color: var(--accent); }
-.nav-links { display: flex; gap: 28px; font-size: var(--text-sm); line-height: 20px; color: var(--mute); }
+.nav-links { display: flex; gap: var(--s-6); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--mute); }
 .nav-links a { transition: color var(--t) var(--ease); }
 .nav-links a:hover { color: var(--ink); }
-.nav-cta {
+
+/* ============ BUTTONS ============ */
+.btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
   min-height: 40px;
-  padding: 8px 16px;
+  padding: var(--s-2) var(--s-3);
   border-radius: var(--r-full);
-  background: var(--accent);
-  color: var(--void);
-  font-size: 14px;
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
   font-weight: 600;
+  border: 1px solid transparent;
+  transition: filter var(--t) var(--ease), border-color var(--t) var(--ease), transform var(--t) var(--ease), background var(--t) var(--ease), color var(--t) var(--ease);
 }
-.nav-cta { transition: filter var(--t) var(--ease), transform var(--t) var(--ease); }
-.nav-cta:hover { filter: brightness(1.06); }
-.nav-cta:active { transform: scale(0.98); }
-button.nav-cta, button.btn {
-  font-family: inherit;
-  cursor: pointer;
-}
+.btn:active { transform: scale(0.98); }
+.btn-fill { background: var(--accent); color: var(--accent-ink); }
+.btn-fill:hover { background: var(--accent-hover); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn-line:hover { border-color: var(--mute); background: rgba(255,255,255,0.04); }
+.btn .iconify-icon { font-size: 16px; }
 
-.hero { padding: 96px 0 64px; }
-.hero-grid {
-  display: block;
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto;
+/* ============ HERO ============ */
+.hero {
+  padding: var(--s-24) 0 var(--s-16);
+  position: relative;
+  z-index: 2;
 }
+.hero-inner { max-width: 680px; margin: 0 auto; text-align: center; }
 .hero-kicker {
   font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: var(--text-xs);
+  line-height: var(--lh-xs);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--mute);
-  margin-bottom: 24px;
+  margin-bottom: var(--s-6);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
 }
+.hero-kicker .iconify-icon { color: var(--accent); font-size: 14px; }
 .hero h1 {
-  font-size: var(--text-5xl);
-  line-height: 1;
+  font-size: var(--text-6xl);
+  line-height: var(--lh-6xl);
   letter-spacing: -0.022em;
-  margin-bottom: 24px;
-  background: linear-gradient(180deg, #FAFAF9 0%, #D4D4D8 100%);
+  font-weight: 600;
+  margin-bottom: var(--s-6);
+  background: linear-gradient(90deg, #FFFFFF 0%, #9B9B9B 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .hero .sub {
   font-size: var(--text-lg);
-  line-height: 28px;
+  line-height: var(--lh-lg);
   letter-spacing: -0.01em;
-  color: var(--ink);
-  max-width: 42rem;
-  margin: 0 auto 32px;
+  color: var(--mute);
+  margin-bottom: var(--s-8);
+  max-width: 680px;
 }
 .install {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 8px 8px 8px 16px;
-  background: var(--carbon);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  margin: 0 auto 24px;
-  width: fit-content;
-  font-size: 14px;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
-}
-.install button {
-  border: 0;
-  background: var(--graphite);
-  color: var(--mute);
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 12px;
-  min-height: 32px;
-  padding: 0 12px;
-  border-radius: var(--r-sm);
-  cursor: pointer;
-}
-.install button { transition: color var(--t) var(--ease); }
-.install button:hover { color: var(--ink); }
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; justify-content: center; }
-.btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 8px 20px;
-  border-radius: var(--r-full);
-  font-size: var(--text-base);
-  line-height: 24px;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: filter var(--t) var(--ease), border-color var(--t) var(--ease), transform var(--t) var(--ease), background var(--t) var(--ease), color var(--t) var(--ease);
-}
-.btn:active { transform: scale(0.98); }
-.btn-fill { background: var(--accent); color: var(--void); }
-.btn-fill:hover { filter: brightness(1.06); }
-.btn-line { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn-line:hover { border-color: var(--mute); }
-.proof-line { font-size: 14px; line-height: 20px; color: var(--mute); text-align: center; }
-.proof-line strong { color: var(--ink); font-weight: 500; }
-
-.band, .tagline, .close, .hero { scroll-margin-top: 72px; }
-.band { padding: var(--section) 0; border-top: 1px solid var(--line); }
-.band-alt { background: var(--void); }
-.head { margin-bottom: 48px; max-width: 640px; }
-.head h2 {
-  font-size: var(--text-4xl);
-  line-height: 40px;
-  letter-spacing: -0.022em;
-  margin-bottom: 16px;
-}
-.head p { font-size: var(--text-base); line-height: 24px; color: var(--mute); }
-
-.hero-still {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 10px;
-  min-height: 200px;
-  padding: 20px;
-  background: var(--carbon);
+  gap: var(--s-3);
+  padding: var(--s-2) var(--s-2) var(--s-2) var(--s-4);
+  background: var(--bg-elev);
   border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  position: relative;
+  border-radius: var(--r-sm);
+  margin-bottom: var(--s-4);
+  font-size: var(--text-sm);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
 }
-.hero-still::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 48px;
-  height: 3px;
-  background: var(--accent);
-}
-.hero-still b {
-  font-size: var(--text-xl);
-  line-height: 28px;
-  letter-spacing: -0.012em;
-  font-weight: 600;
-}
-.hero-still em {
-  font-style: normal;
+.install code { color: var(--ink); }
+.install button {
+  border: 0;
+  background: var(--bg-overlay);
+  color: var(--mute);
   font-family: "Geist Mono", ui-monospace, monospace;
   font-size: var(--text-xs);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--mute);
+  min-height: 32px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-sm);
+  transition: color var(--t) var(--ease);
 }
+.install button:hover { color: var(--ink); }
+.cta-row { display: flex; flex-wrap: wrap; gap: var(--s-3); justify-content: center; margin-bottom: var(--s-6); }
+.proof-line { font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--mute); }
+.proof-line strong { color: var(--ink); font-weight: 500; }
 
-.demo-section { padding: 96px 0; border-top: 1px solid var(--line); }
+/* ============ DEMO SECTION ============ */
+.demo-section {
+  padding: 0 0 var(--s-24);
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--line);
+}
 .demo-frame {
   max-width: 960px;
   margin: 0 auto;
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
-  background: var(--carbon);
-  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.02);
+  background: var(--bg-band);
+  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02);
 }
 .demo-chrome {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--s-2);
   height: 32px;
-  padding: 0 12px;
-  background: var(--graphite);
+  padding: 0 var(--s-3);
+  background: var(--bg-elev);
   border-bottom: 1px solid var(--line);
 }
 .dot { width: 8px; height: 8px; border-radius: 50%; }
-.dot-red { background: #FF5F57; }
+.dot-red    { background: #FF5F57; }
 .dot-yellow { background: #FEBC2E; }
-.dot-green { background: #28C840; }
+.dot-green  { background: #28C840; }
 .chrome-url {
-  margin-left: 8px;
+  margin-left: var(--s-2);
   font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--mute);
   letter-spacing: 0.02em;
 }
-.demo-stage { aspect-ratio: 16 / 9; background: #111; }
+.demo-stage { aspect-ratio: 16 / 9; background: var(--bg-void); }
 .demo-stage iframe { width: 100%; height: 100%; border: 0; display: block; }
-.demo-poster { display: none; }
-.demo-caption {
-  margin-top: 16px;
-  text-align: center;
-  font-size: 14px;
+.demo-poster {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--s-2);
+  min-height: 200px;
+  padding: var(--s-6);
+  background: var(--bg-elev);
+}
+.demo-poster .label {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--mute);
 }
-.demo-caption a { color: var(--ink); border-bottom: 1px solid var(--line); }
+.demo-poster .title {
+  font-size: var(--text-xl);
+  line-height: var(--lh-xl);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+.demo-poster .open {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.demo-caption {
+  margin-top: var(--s-4);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--mute);
+}
+.demo-caption a { color: var(--ink); border-bottom: 1px solid var(--line); transition: border-color var(--t) var(--ease); }
 .demo-caption a:hover { border-bottom-color: var(--ink); }
-.themes {
+
+/* ============ BAND ============ */
+.band {
+  padding: var(--s-24) 0;
+  background: var(--bg-band);
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 2;
+}
+.band-warm {
+  background: var(--bg-warm);
+}
+.head { margin-bottom: var(--s-12); max-width: 640px; }
+.head h2 {
+  font-size: var(--text-4xl);
+  line-height: var(--lh-4xl);
+  letter-spacing: -0.022em;
+  margin-bottom: var(--s-4);
+}
+.head p { font-size: var(--text-base); line-height: var(--lh-base); color: var(--mute); }
+
+/* ============ BENEFITS ============ */
+.benefits {
+  display: grid;
+  gap: 0;
+  max-width: 760px;
+}
+.benefit {
+  padding: var(--s-8) 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+.benefit:first-child { border-top: 1px solid var(--line); }
+.benefit .iconify-icon {
+  font-size: var(--text-2xl);
+  color: var(--accent);
+  margin-top: 0;
+}
+.benefit h3 { font-size: var(--text-lg); line-height: var(--lh-lg); letter-spacing: -0.012em; margin-bottom: var(--s-2); }
+.benefit p { color: var(--mute); font-size: var(--text-base); line-height: var(--lh-base); }
+.benefit code {
+  font-size: var(--text-xs);
+  background: var(--bg-elev);
+  padding: var(--s-1) var(--s-2);
+  border-radius: 4px;
+}
+
+/* ============ TAGLINE (MANDATORY per landing-page skill) ============
+   - min 2 lines, max-width capped, words start 25-35% opacity
+   - per-word scroll activation as they cross the trigger
+   - transition uses custom ease, never linear fade  */
+.tagline {
+  padding: var(--s-24) 0;
+  background: var(--bg-warm);
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 2;
+}
+.tagline .wrap { max-width: 920px; }
+.tagline p {
+  font-size: var(--text-5xl);
+  line-height: var(--lh-5xl);
+  letter-spacing: -0.022em;
+  font-weight: 600;
+  max-width: 16ch;
+  margin: 0 auto;
+  text-align: center;
+}
+.tagline .word {
+  display: inline-block;
+  color: color-mix(in srgb, var(--ink) 28%, transparent);
+  transition: color 700ms var(--ease);
+}
+.tagline .word.on { color: var(--ink); }
+
+/* ============ HOW IT WORKS ============ */
+.steps { display: flex; flex-direction: column; max-width: 720px; }
+.step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--s-6);
+  padding: var(--s-8) 0;
+  border-bottom: 1px solid var(--line);
+}
+.step:first-child { border-top: 1px solid var(--line); }
+.step-n {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  padding-top: var(--s-1);
+}
+.step h3 { font-size: var(--text-lg); line-height: var(--lh-lg); letter-spacing: -0.012em; margin-bottom: var(--s-2); }
+.step p { color: var(--mute); font-size: var(--text-base); line-height: var(--lh-base); }
+.step code {
+  font-size: var(--text-xs);
+  background: var(--bg-elev);
+  padding: var(--s-1) var(--s-2);
+  border-radius: 4px;
+}
+.cli {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: var(--s-6);
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  overflow-x: auto;
+  margin-top: var(--s-12);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
+}
+.cli .c { color: var(--mute); }
+
+/* ============ THEMES GRID (replaces horizontal scroll) ============ */
+.themes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-  padding: 0;
+  gap: var(--s-3);
 }
 .theme {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 8px;
+  gap: var(--s-2);
+  padding: var(--s-2);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
+  background: var(--bg-elev);
   text-decoration: none;
   color: var(--mute);
   font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 11px;
-  line-height: 14px;
+  font-size: var(--text-xs);
+  line-height: var(--lh-xs);
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  transition: border-color var(--t) var(--ease), color var(--t) var(--ease), transform var(--t) var(--ease);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
+  transition: border-color var(--t) var(--ease), color var(--t) var(--ease), transform var(--t) var(--ease), background var(--t) var(--ease);
 }
-.theme:hover { color: var(--ink); border-color: var(--line-strong); transform: translateY(-1px); }
+.theme:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  background: var(--bg-overlay);
+}
 .theme .sw {
   height: 80px;
   border-radius: 4px;
@@ -368,117 +522,53 @@ button.nav-cta, button.btn {
   bottom: 0;
   height: 6px;
 }
-.deck-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-}
-.deck-row a {
+.deck-cta { margin-top: var(--s-8); text-align: center; }
+.deck-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--ink);
   font-size: var(--text-sm);
-  line-height: 20px;
-  color: var(--mute);
-  border-bottom: 1px solid transparent;
-  transition: color var(--t) var(--ease), border-color var(--t) var(--ease);
-}
-.deck-row a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-
-.benefits {
-  display: grid;
-  gap: 0;
-  max-width: 760px;
-}
-.benefit {
-  padding: 32px 0;
   border-bottom: 1px solid var(--line);
+  padding-bottom: var(--s-1);
+  transition: border-color var(--t) var(--ease);
 }
-.benefit:first-child { border-top: 1px solid var(--line); }
-.benefit h3 { font-size: var(--text-lg); line-height: 28px; letter-spacing: -0.012em; margin-bottom: 8px; }
-.benefit p { color: var(--mute); }
+.deck-cta a:hover { border-bottom-color: var(--ink); }
 
-.tagline {
-  padding: 96px 0;
-  background: radial-gradient(ellipse 60% 80% at center, var(--carbon) 0%, var(--void) 75%);
-  border-top: 1px solid var(--line);
-}
-.tagline p {
-  font-size: var(--text-5xl);
-  line-height: 1;
-  letter-spacing: -0.022em;
-  font-weight: 600;
-  max-width: 14ch;
-}
-.tagline .word {
-  color: color-mix(in srgb, var(--ink) 30%, transparent);
-  transition: color 800ms var(--ease);
-}
-.tagline .word.on { color: var(--ink); }
-
-.steps { display: flex; flex-direction: column; max-width: 720px; }
-.step {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 20px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--line);
-}
-.step:first-child { border-top: 1px solid var(--line); }
-.step-n {
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--accent);
-  letter-spacing: 0.08em;
-  padding-top: 4px;
-}
-.step h3 { font-size: var(--text-lg); line-height: 28px; letter-spacing: -0.012em; margin-bottom: 8px; }
-.step p { color: var(--mute); }
-.step code {
-  font-size: 13px;
-  background: var(--graphite);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.cli {
-  background: var(--graphite);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  padding: 20px 24px;
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 14px;
-  line-height: 28px;
-  overflow-x: auto;
-}
-.cli .c { color: var(--mute); }
-
+/* ============ SPLIT (quality guardrails) ============ */
 .split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: var(--s-12);
   align-items: start;
 }
 .split .head { position: sticky; top: 96px; }
-.list { display: flex; flex-direction: column; gap: 16px; }
+.list { display: flex; flex-direction: column; gap: var(--s-4); list-style: none; }
 .list li {
-  list-style: none;
-  padding-left: 0;
   color: var(--mute);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: var(--s-3);
+  align-items: start;
 }
+.list .iconify-icon { color: var(--accent); font-size: 16px; margin-top: 4px; }
 .list strong { color: var(--ink); font-weight: 500; }
 
+/* ============ FAQ ============ */
 .faq { max-width: 720px; }
-.faq-item { border-bottom: 1px solid var(--line); padding: 24px 0; }
+.faq-item { border-bottom: 1px solid var(--line); padding: var(--s-6) 0; }
+.faq-item:first-child { border-top: 1px solid var(--line); }
 .faq-item summary {
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 500;
   cursor: pointer;
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: var(--s-4);
   min-height: 44px;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
@@ -490,65 +580,107 @@ button.nav-cta, button.btn {
   border-bottom: 1.5px solid var(--mute);
   transform: rotate(45deg);
   flex-shrink: 0;
+  transition: transform var(--t) var(--ease);
 }
 .faq-item[open] summary::after { transform: rotate(225deg); }
-.faq-item p { margin-top: 12px; color: var(--mute); }
+.faq-item p { margin-top: var(--s-3); color: var(--mute); font-size: var(--text-base); line-height: var(--lh-base); }
 .faq-item code {
-  font-size: 13px;
-  background: var(--graphite);
-  padding: 2px 6px;
+  font-size: var(--text-xs);
+  background: var(--bg-elev);
+  padding: var(--s-1) var(--s-2);
   border-radius: 4px;
 }
 
+/* ============ CLOSE ============ */
 .close {
-  padding: 96px 0;
+  padding: var(--s-24) 0;
   text-align: center;
-  background: radial-gradient(ellipse 60% 80% at center, var(--carbon) 0%, var(--void) 75%);
+  background: var(--bg-void);
   border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 2;
 }
 .close h2 {
   font-size: var(--text-5xl);
-  line-height: 1;
+  line-height: var(--lh-5xl);
   letter-spacing: -0.022em;
   max-width: 16ch;
-  margin: 0 auto 24px;
+  margin: 0 auto var(--s-6);
+  background: linear-gradient(90deg, #FFFFFF 0%, #9B9B9B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-.close p { color: var(--mute); margin-bottom: 32px; }
+.close p { color: var(--mute); margin-bottom: var(--s-8); font-size: var(--text-base); }
 .close .cta-row { justify-content: center; }
 
 footer {
   border-top: 1px solid var(--line);
-  padding: 32px 0 48px;
-  font-size: 14px;
+  padding: var(--s-8) 0 var(--s-12);
+  font-size: var(--text-sm);
   color: var(--faint);
+  position: relative;
+  z-index: 2;
+  background: var(--bg-void);
 }
-footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer .wrap { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
 footer a { color: var(--mute); transition: color var(--t) var(--ease); }
 footer a:hover { color: var(--ink); }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-@media (max-width: 800px) {
-  .hero { padding: 64px 0 48px; }
-  .hero h1 { font-size: var(--text-4xl); line-height: 40px; }
-  .hero .sub { font-size: var(--text-base); line-height: 24px; }
-  .demo-stage iframe { display: none; }
-  .demo-stage { aspect-ratio: auto; min-height: 200px; }
-  .demo-poster { display: flex; }
-  .tagline p, .close h2 { font-size: var(--text-3xl); line-height: 36px; }
-  .head h2 { font-size: var(--text-3xl); line-height: 36px; }
-  .nav-links { display: none; }
-  .split { grid-template-columns: 1fr; gap: 32px; }
-  .split .head { position: static; }
-  .band { padding: 80px 0; }
-  .tagline, .close { padding: 80px 0; }
-  .demo-section { padding-top: 64px; padding-bottom: 64px; }
-  .hero .cta-row .install-btn { display: none; }
+/* scroll-interpolation utility (per skill) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(8px);
+  transition: opacity 800ms var(--ease), transform 800ms var(--ease), filter 800ms var(--ease);
 }
+.reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; filter: none; }
   .tagline .word { color: var(--ink); }
+}
+
+@media (max-width: 800px) {
+  .hero { padding: var(--s-16) 0 var(--s-12); }
+  .hero h1 { font-size: var(--text-4xl); line-height: var(--lh-4xl); }
+  .hero .sub { font-size: var(--text-base); line-height: var(--lh-base); }
+  .demo-stage iframe { display: none; }
+  .demo-stage { aspect-ratio: auto; min-height: 240px; display: flex; align-items: stretch; padding: var(--s-6); }
+  .demo-poster { display: flex; }
+  .tagline p, .close h2 { font-size: var(--text-3xl); line-height: var(--lh-3xl); }
+  .head h2 { font-size: var(--text-3xl); line-height: var(--lh-3xl); }
+  .nav-links { display: none; }
+  .split { grid-template-columns: 1fr; gap: var(--s-8); }
+  .split .head { position: static; }
+  .band { padding: var(--s-20) 0; }
+  .tagline, .close { padding: var(--s-20) 0; }
+  .demo-section { padding-bottom: var(--s-16); }
+  .hero .cta-row .install-btn { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: var(--s-12) 0 var(--s-8); }
+  .hero h1 { font-size: var(--text-3xl); line-height: var(--lh-3xl); }
+  .hero .sub { font-size: var(--text-base); line-height: var(--lh-base); }
+  .wrap { padding: 0 var(--s-4); }
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta-row .btn { width: 100%; }
+  .install { width: 100%; justify-content: space-between; }
+  .themes-grid { grid-template-columns: repeat(2, 1fr); }
+  .benefit { grid-template-columns: 1fr; gap: var(--s-4); }
+  .benefit .iconify-icon { font-size: var(--text-xl); }
+  .step { grid-template-columns: 1fr; gap: var(--s-2); }
+  .step-n { padding-top: 0; }
+  .tagline p, .close h2 { font-size: var(--text-2xl); line-height: var(--lh-2xl); }
+  .head h2 { font-size: var(--text-2xl); line-height: var(--lh-2xl); }
+  .band { padding: var(--s-16) 0; }
+  .tagline, .close { padding: var(--s-16) 0; }
+  .demo-section { padding-bottom: var(--s-12); }
 }
 </style>
 </head>
@@ -564,31 +696,46 @@ footer a:hover { color: var(--ink); }
       <a href="#how">Workflow</a>
       <a href="#faq">FAQ</a>
     </div>
-    <button type="button" class="nav-cta install-btn">Copy install</button>
+    <button type="button" class="btn btn-fill install-btn">
+      <iconify-icon icon="ph:copy-simple" aria-hidden="true"></iconify-icon>
+      Copy install
+    </button>
   </div>
 </nav>
 
-<main id="main" style="position: relative; z-index: 2;">
+<main id="main">
+
 <section class="hero" id="top">
-  <div class="wrap hero-grid">
-    <p class="hero-kicker">Local skill · MIT · no API keys</p>
-    <h1>Give your coding agent<br>a deck workflow.</h1>
-    <p class="sub">A skill file for Claude Code, Cursor, Codex, Windsurf, or Aider. Pyramid Principle, color checks, HTML on disk, then PPTX or PDF. Not a slide product.</p>
-    <div class="install" id="install">
-      <code id="cmd">npx deckmason init</code>
-      <button type="button" class="install-btn" id="copy">Copy</button>
+  <div class="wrap">
+    <div class="hero-inner">
+      <p class="hero-kicker reveal">
+        <iconify-icon icon="ph:cube-transparent" aria-hidden="true"></iconify-icon>
+        Local skill · MIT · no API keys
+      </p>
+      <h1 class="reveal">Give your coding agent<br>a deck workflow.</h1>
+      <p class="sub reveal">A skill file for Claude Code, Cursor, Codex, Windsurf, or Aider. Pyramid Principle, color checks, HTML on disk, then PPTX or PDF. Not a slide product.</p>
+      <div class="install reveal" id="install">
+        <code id="cmd">npx deckmason init</code>
+        <button type="button" class="install-btn" id="copy">Copy</button>
+      </div>
+      <div class="cta-row reveal">
+        <button type="button" class="btn btn-fill install-btn">
+          <iconify-icon icon="ph:copy-simple" aria-hidden="true"></iconify-icon>
+          Copy install
+        </button>
+        <a class="btn btn-line" href="https://github.com/a692570/deckmason">
+          <iconify-icon icon="ph:github-logo" aria-hidden="true"></iconify-icon>
+          View the repo
+        </a>
+      </div>
+      <p class="proof-line reveal"><strong>31 themes</strong>, plus Kami Warm Editorial. Arrow keys move the deck. N opens notes.</p>
     </div>
-    <div class="cta-row">
-      <button type="button" class="btn btn-fill install-btn">Copy install</button>
-      <a class="btn btn-line" href="https://github.com/a692570/deckmason">View the repo</a>
-    </div>
-    <p class="proof-line"><strong>31 themes</strong>, plus Kami Warm Editorial. Arrow keys move the deck. N opens notes.</p>
   </div>
 </section>
 
 <section class="demo-section" id="demo" aria-label="Live demo">
   <div class="wrap">
-    <div class="demo-frame">
+    <div class="demo-frame reveal">
       <div class="demo-chrome">
         <span class="dot dot-red"></span>
         <span class="dot dot-yellow"></span>
@@ -596,25 +743,25 @@ footer a:hover { color: var(--ink); }
         <span class="chrome-url">demo/example-deck.html</span>
       </div>
       <div class="demo-stage">
-        <iframe src="demo/example-deck.html" title="DeckMason Bold Signal demo deck"></iframe>
-        <a class="hero-still demo-poster" href="demo/example-deck.html">
-          <em>Bold Signal · live deck</em>
-          <b>Design quality is a system, not a prompt</b>
-          <em>Open full screen</em>
+        <iframe src="demo/example-deck.html" title="DeckMason Bold Signal demo deck" loading="lazy"></iframe>
+        <a class="demo-poster" href="demo/example-deck.html">
+          <span class="label">Bold Signal · live deck</span>
+          <span class="title">Design quality is a system, not a prompt</span>
+          <span class="open">Open full screen</span>
         </a>
       </div>
     </div>
-    <p class="demo-caption">Bold Signal theme · 9 slides · arrow keys to navigate · <a href="demo/example-deck.html">Open full screen</a></p>
+    <p class="demo-caption reveal">Bold Signal theme · 9 slides · arrow keys to navigate · <a href="demo/example-deck.html">Open full screen</a></p>
   </div>
 </section>
 
-<section class="band band-alt" id="themes">
+<section class="band" id="themes">
   <div class="wrap">
-    <div class="head">
+    <div class="head reveal">
       <h2>The 31 presets, as chips.</h2>
-      <p>Dominant color on the face, accent on the bar. Four of them have a live deck. Scroll the rest.</p>
+      <p>Dominant color on the face, accent on the bar. Four of them have a live deck. Hover the rest.</p>
     </div>
-    <div class="themes" role="list">
+    <div class="themes-grid reveal" role="list">
       <a class="theme" role="listitem" href="demo/example-deck.html"><span class="sw" style="background:#1a1a1a"><i style="background:#FF5722"></i></span>Bold Signal</a>
       <a class="theme" role="listitem" href="examples/paper-ink-editorial-essay.html"><span class="sw" style="background:#faf9f7"><i style="background:#c41e3a"></i></span>Paper and Ink</a>
       <a class="theme" role="listitem" href="examples/deep-space-keynote-vision.html"><span class="sw" style="background:#030712"><i style="background:#818cf8"></i></span>Deep Space</a>
@@ -648,71 +795,89 @@ footer a:hover { color: var(--ink); }
       <div class="theme" role="listitem"><span class="sw" style="background:#1a1a1a"><i style="background:#ff6b35"></i></span>Broadside</div>
       <div class="theme" role="listitem"><span class="sw" style="background:#f5f4ed"><i style="background:#1B365D"></i></span>Kami Editorial</div>
     </div>
-    <p class="deck-row">
-      <a href="https://github.com/a692570/deckmason/blob/main/STYLE_PRESETS.md">View all 31 specs</a>
+    <p class="deck-cta reveal">
+      <a href="https://github.com/a692570/deckmason/blob/main/STYLE_PRESETS.md">
+        <iconify-icon icon="ph:specifications" aria-hidden="true"></iconify-icon>
+        View all 31 specs
+      </a>
     </p>
   </div>
 </section>
 
-<section class="band">
+<section class="band band-warm">
   <div class="wrap">
-    <div class="head">
+    <div class="head reveal">
       <h2>A pasted prompt cannot keep a grid.</h2>
       <p>Most agent decks fail the same three ways: topic-label headings, broken contrast, five slides that weigh the same. DeckMason makes those hard rules, not reminders.</p>
     </div>
     <div class="benefits">
-      <article class="benefit">
-        <h3>The story is a thesis, not a table of contents</h3>
-        <p>Phase 1 encodes the Pyramid Principle. Every heading is an assertion. If the title is a topic label, the slide has no point and gets rewritten.</p>
+      <article class="benefit reveal">
+        <iconify-icon icon="ph:pyramid" aria-hidden="true"></iconify-icon>
+        <div>
+          <h3>The story is a thesis, not a table of contents</h3>
+          <p>Phase 1 encodes the Pyramid Principle. Every heading is an assertion. If the title is a topic label, the slide has no point and gets rewritten.</p>
+        </div>
       </article>
-      <article class="benefit">
-        <h3>Color is a ratio, then a check</h3>
-        <p>Each theme ships with harmony, temperature, and a 60-30-10 split. Phase 5 checks contrast at 4.5:1, a 13-rung lightness ladder, and saturation budget before delivery.</p>
+      <article class="benefit reveal">
+        <iconify-icon icon="ph:paint-roller" aria-hidden="true"></iconify-icon>
+        <div>
+          <h3>Color is a ratio, then a check</h3>
+          <p>Each theme ships with harmony, temperature, and a 60-30-10 split. Phase 5 checks contrast at 4.5:1, a 13-rung lightness ladder, and saturation budget before delivery.</p>
+        </div>
       </article>
-      <article class="benefit">
-        <h3>The output is a file, not a chat blob</h3>
-        <p>Self contained HTML with 1920 by 1080 canvas math, speaker notes, and keyboard nav. Export with <code>python3 scripts/pptx_export.py</code> or headless Chrome for PDF.</p>
+      <article class="benefit reveal">
+        <iconify-icon icon="ph:file-html" aria-hidden="true"></iconify-icon>
+        <div>
+          <h3>The output is a file, not a chat blob</h3>
+          <p>Self-contained HTML with 1920 by 1080 canvas math, speaker notes, and keyboard nav. Export with <code>python3 scripts/pptx_export.py</code> or headless Chrome for PDF.</p>
+        </div>
       </article>
-      <article class="benefit">
-        <h3>Your existing deck is source material</h3>
-        <p><code>deckmason import company-deck.pptx</code> extracts slides, notes, theme colors, and fonts to JSON. The agent rebuilds under the same guardrails. Brand import also reads a website or a brand PDF.</p>
+      <article class="benefit reveal">
+        <iconify-icon icon="ph:download-simple" aria-hidden="true"></iconify-icon>
+        <div>
+          <h3>Your existing deck is source material</h3>
+          <p><code>deckmason import company-deck.pptx</code> extracts slides, notes, theme colors, and fonts to JSON. The agent rebuilds under the same guardrails. Brand import also reads a website or a brand PDF.</p>
+        </div>
       </article>
-      <article class="benefit">
-        <h3>The skill refuses invented proof</h3>
-        <p>Data Slop Rule: no statistic the user did not provide. Banned words list. 30 percent copy cut. One idea per slide. Reduced motion path on every animated deck.</p>
+      <article class="benefit reveal">
+        <iconify-icon icon="ph:shield-check" aria-hidden="true"></iconify-icon>
+        <div>
+          <h3>The skill refuses invented proof</h3>
+          <p>Data Slop Rule: no statistic the user did not provide. Banned words list. 30 percent copy cut. One idea per slide. Reduced motion path on every animated deck.</p>
+        </div>
       </article>
     </div>
   </div>
 </section>
 
-<section class="tagline" id="tagline" aria-label="Core claim">
+<section class="tagline band-warm" id="tagline" aria-label="Core claim">
   <div class="wrap">
     <p id="tagline-text">A prompt cannot enforce contrast. A skill file can.</p>
   </div>
 </section>
 
-<section class="band band-alt" id="how">
+<section class="band" id="how">
   <div class="wrap">
-    <div class="head">
+    <div class="head reveal">
       <h2>Three commands. Then you talk to the agent.</h2>
       <p>The CLI copies the skill. The agent reads SKILL.md and loads each phase file only when it reaches that phase.</p>
     </div>
     <div class="steps">
-      <article class="step">
+      <article class="step reveal">
         <div class="step-n">01</div>
         <div>
           <h3>Install locally</h3>
           <p>Run <code>npx deckmason init</code>. Default path is <code>~/.claude/skills/deckmason</code>. Or clone the repo. Or <code>npm install -g deckmason</code>.</p>
         </div>
       </article>
-      <article class="step">
+      <article class="step reveal">
         <div class="step-n">02</div>
         <div>
           <h3>Pick a direction with your eyes</h3>
           <p>Run <code>deckmason preview "Your Topic"</code>. You get three one-slide HTML files: Deep Space, Modern SaaS, Bold Signal. Open them, pick one, tell the agent. Text questions exist if you prefer words.</p>
         </div>
       </article>
-      <article class="step">
+      <article class="step reveal">
         <div class="step-n">03</div>
         <div>
           <h3>Ask for the deck</h3>
@@ -720,7 +885,7 @@ footer a:hover { color: var(--ink); }
         </div>
       </article>
     </div>
-    <div class="cli" style="margin-top:48px" aria-label="CLI commands">
+    <div class="cli reveal" aria-label="CLI commands">
       <div><span class="c">$</span> npx deckmason init</div>
       <div><span class="c">$</span> deckmason themes</div>
       <div><span class="c">$</span> deckmason preview "Series A pitch"</div>
@@ -729,29 +894,27 @@ footer a:hover { color: var(--ink); }
   </div>
 </section>
 
-<section class="band">
+<section class="band band-warm">
   <div class="wrap split">
-    <div>
-      <div class="head">
-        <h2>What the agent is not allowed to skip.</h2>
-        <p>From SKILL.md and references/quality-guardrails.md. These are gates, not style tips.</p>
-      </div>
+    <div class="head reveal">
+      <h2>What the agent is not allowed to skip.</h2>
+      <p>From SKILL.md and references/quality-guardrails.md. These are gates, not style tips.</p>
     </div>
     <ul class="list">
-      <li><strong>Pre-flight scoping</strong> before a single slide: preview or four text questions.</li>
-      <li><strong>One idea per slide.</strong> Two ideas means two slides.</li>
-      <li><strong>No overflow:hidden</strong> to hide overflow. Split the slide.</li>
-      <li><strong>Title at least 2.5x body.</strong> Target 3x.</li>
-      <li><strong>Hero and non-hero alternate.</strong> No three same-weight slides in a row.</li>
-      <li><strong>N toggles speaker notes</strong> on every HTML deck.</li>
-      <li><strong>Self-check checklist</strong> before delivery: narrative, visual, color, content, technical, taste.</li>
+      <li class="reveal"><iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon><div><strong>Pre-flight scoping</strong> before a single slide: preview or four text questions.</div></li>
+      <li class="reveal"><iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon><div><strong>One idea per slide.</strong> Two ideas means two slides.</div></li>
+      <li class="reveal"><iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon><div><strong>No overflow:hidden</strong> to hide overflow. Split the slide.</div></li>
+      <li class="reveal"><iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon><div><strong>Title at least 2.5x body.</strong> Target 3x.</div></li>
+      <li class="reveal"><iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon><div><strong>Hero and non-hero alternate.</strong> No three same-weight slides in a row.</div></li>
+      <li class="reveal"><iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon><div><strong>N toggles speaker notes</strong> on every HTML deck.</div></li>
+      <li class="reveal"><iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon><div><strong>Self-check checklist</strong> before delivery: narrative, visual, color, content, technical, taste.</div></li>
     </ul>
   </div>
 </section>
 
-<section class="band band-alt" id="faq">
+<section class="band" id="faq">
   <div class="wrap">
-    <div class="head">
+    <div class="head reveal">
       <h2>Questions people actually ask.</h2>
       <p>Answers from the README, CLI, and skill files. Nothing invented for this page.</p>
     </div>
@@ -794,14 +957,21 @@ footer a:hover { color: var(--ink); }
 
 <section class="close">
   <div class="wrap">
-    <h2>Point the agent at the skill. Ship the deck.</h2>
-    <p>Clone, init, or install globally. Then ask for the presentation.</p>
-    <div class="cta-row">
-      <button type="button" class="btn btn-fill install-btn">Copy install</button>
-      <a class="btn btn-line" href="https://github.com/a692570/deckmason">View the repo</a>
+    <h2 class="reveal">Point the agent at the skill. Ship the deck.</h2>
+    <p class="reveal">Clone, init, or install globally. Then ask for the presentation.</p>
+    <div class="cta-row reveal">
+      <button type="button" class="btn btn-fill install-btn">
+        <iconify-icon icon="ph:copy-simple" aria-hidden="true"></iconify-icon>
+        Copy install
+      </button>
+      <a class="btn btn-line" href="https://github.com/a692570/deckmason">
+        <iconify-icon icon="ph:github-logo" aria-hidden="true"></iconify-icon>
+        View the repo
+      </a>
     </div>
   </div>
 </section>
+
 </main>
 
 <footer>
@@ -842,36 +1012,53 @@ footer a:hover { color: var(--ink); }
     b.addEventListener("click", copyInstall);
   });
 
+  // Tagline word-by-word reveal (MANDATORY per landing-page skill)
   var el = document.getElementById("tagline-text");
-  var words = el.textContent.trim().split(/\s+/);
-  el.setAttribute("aria-label", el.textContent);
-  el.innerHTML = words.map(function (w) {
-    return '<span class="word">' + w + "</span>";
-  }).join(" ");
-  var spans = el.querySelectorAll(".word");
+  if (el) {
+    var words = el.textContent.trim().split(/\s+/);
+    el.setAttribute("aria-label", el.textContent);
+    el.innerHTML = words.map(function (w) {
+      return '<span class="word">' + w + "</span>";
+    }).join(" ");
+    var spans = el.querySelectorAll(".word");
 
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduce || typeof gsap === "undefined") {
-    spans.forEach(function (s) { s.classList.add("on"); });
-    return;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || typeof gsap === "undefined") {
+      spans.forEach(function (s) { s.classList.add("on"); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          gsap.to(spans, {
+            color: "#FAFAF9",
+            duration: 0.45,
+            stagger: 0.08,
+            ease: "cubic-bezier(0.32, 0.72, 0, 1)",
+            onStart: function () {
+              spans.forEach(function (s) { s.classList.add("on"); });
+            }
+          });
+          io.disconnect();
+        });
+      }, { threshold: 0.4 });
+      io.observe(el);
+    }
   }
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      gsap.to(spans, {
-        color: "#FAFAF9",
-        duration: 0.45,
-        stagger: 0.08,
-        ease: "cubic-bezier(0.32, 0.72, 0, 1)",
-        onStart: function () {
-          spans.forEach(function (s) { s.classList.add("on"); });
-        }
+  // Scroll-interpolation reveals (per skill: translateY(16px) blur(8px) opacity-0 -> in)
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion) {
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in");
+        revealObs.unobserve(entry.target);
       });
-      io.disconnect();
-    });
-  }, { threshold: 0.4 });
-  io.observe(el);
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { revealObs.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
 })();
 </script>
 </body>

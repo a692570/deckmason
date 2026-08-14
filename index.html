@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeckMason: AI presentation skill for coding agents</title>
-<meta name="title" content="DeckMason: AI presentation skill for coding agents">
-<meta name="description" content="A local skill that teaches Claude Code, Cursor, Codex, and Windsurf to build HTML slide decks. 31 themes, Pyramid Principle, color checks, PPT import, PPTX and PDF export. No API keys.">
+<title>DeckMason: A skill file for coding agents that build HTML decks</title>
+<meta name="title" content="DeckMason: A skill file for coding agents that build HTML decks">
+<meta name="description" content="A local skill file that enforces the design rules a prompt can only suggest: assertion headings, 4.5:1 contrast, one idea per slide. 31 themes. PPT import, PPTX and PDF export. No API keys. MIT.">
 <meta name="keywords" content="ai presentation, slide deck generator, html presentation, pptx export, ai slides, coding agent skill, claude code skill, ai pitch deck, presentation automation, developer tools, open source presentations">
 <meta name="author" content="DeckMason">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://a692570.github.io/deckmason/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://a692570.github.io/deckmason/">
-<meta property="og:title" content="DeckMason: AI presentation skill for coding agents">
-<meta property="og:description" content="A local skill that teaches any coding agent to build HTML slide decks. 31 themes, Pyramid Principle, PPT import, PPTX and PDF export. No API keys.">
+<meta property="og:title" content="DeckMason: A skill file for coding agents that build HTML decks">
+<meta property="og:description" content="A local skill file that enforces the design rules a prompt can only suggest: assertion headings, 4.5:1 contrast, one idea per slide. 31 themes. PPT import, PPTX and PDF export. No API keys. MIT.">
 <meta property="og:site_name" content="DeckMason">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/a692570/deckmason/main/demo/og-cover.png">
-<meta property="og:image:alt" content="DeckMason: AI presentation skill for coding agents">
+<meta property="og:image:alt" content="DeckMason: A skill file for coding agents that build HTML decks">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://a692570.github.io/deckmason/">
-<meta name="twitter:title" content="DeckMason: AI presentation skill for coding agents">
-<meta name="twitter:description" content="A local skill that teaches any coding agent to build HTML slide decks. 31 themes, Pyramid Principle, PPT import. No API keys.">
+<meta name="twitter:title" content="DeckMason: A skill file for coding agents that build HTML decks">
+<meta name="twitter:description" content="A local skill file that enforces the design rules a prompt can only suggest. 31 themes. PPT import, PPTX and PDF export. No API keys. MIT.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/a692570/deckmason/main/demo/og-cover.png">
-<meta name="twitter:image:alt" content="DeckMason: AI presentation skill">
+<meta name="twitter:image:alt" content="DeckMason: A skill file for coding agents">
 <meta name="theme-color" content="#000000">
 <script type="application/ld+json">
 {
@@ -34,7 +34,7 @@
   "name": "DeckMason",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Cross-platform",
-  "description": "AI presentation skill that generates production-quality HTML slide decks. 31 curated themes, Pyramid Principle storytelling, PPTX/PDF export, PPT import, visual preview mode.",
+  "description": "A skill file for coding agents that generates production-quality HTML slide decks with enforced design rules. 31 curated themes, Pyramid Principle storytelling, PPTX/PDF export, PPT import, visual preview mode.",
   "url": "https://github.com/a692570/deckmason",
   "downloadUrl": "https://github.com/a692570/deckmason",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
@@ -45,24 +45,29 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
 <style>
 /* =========================================================
-   DeckMason landing — built per landing-page + frontend-design skills
+   DeckMason landing — ground-up rewrite
+   Skill compliance:
    - Dark bg ONLY from skill list: #000000, #181818, #1F1F1F, #272727, #313131, #131209
    - Geist + Geist Mono, no italic, cap at 600
-   - Tailwind-snap type scale with line heights
-   - Spacing scale: 0,2,4,8,12,16,24,32,40,48,64,80,96
+   - Tailwind-snap type scale with paired line heights
+   - Spacing scale: 0,4,8,12,16,24,32,40,48,64,80,96
    - Heading gradient (only place gradients allowed): #FFFFFF -> #9B9B9B left-to-right
    - Phosphor icons via Iconify
    - Mandatory tagline reveal section
    - Scroll interpolation: .reveal with translateY(16px) blur(8px) opacity-0
    - Custom easing: cubic-bezier(0.32, 0.72, 0, 1)
+   - Buttons: 8px vertical, 12px horizontal
+   - Mobile breakpoints: 800px and 480px
+   New palette: teal accent #2DD4BF (replaces orange)
+   New copy: contrarian reframe throughout
+   Demo: pointer-events:none iframe + click-to-interact overlay
    ========================================================= */
 
 :root {
-  /* backgrounds (only these per skill spec) */
   --bg-void:    #000000;
   --bg-band:    #181818;
   --bg-elev:    #1F1F1F;
@@ -70,25 +75,20 @@
   --bg-plate:   #313131;
   --bg-warm:    #131209;
 
-  /* text (zinc scale, neutral, no warm tint to match the cool/warm bg split) */
-  --ink:  #FAFAF9;
-  --mute: #A1A1AA;
-  --faint:#71717A;
+  --ink:   #FAFAF9;
+  --mute:  #A1A1AA;
+  --faint: #71717A;
 
-  /* lines */
   --line:        rgba(250, 250, 249, 0.08);
   --line-strong: rgba(250, 250, 249, 0.14);
 
-  /* accent (kept coral-orange; softens previous #FF5722) */
-  --accent:        #FF7A45;
-  --accent-hover:  #FF8B5C;
-  --accent-ink:    #0A0A0B;
+  --accent:       #2DD4BF;
+  --accent-hover: #5EEAD4;
+  --accent-ink:   #0A0A0B;
 
-  /* motion */
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
   --t: 250ms;
 
-  /* type scale (Tailwind snap) */
   --text-xs:   12px;  --lh-xs:   16px;
   --text-sm:   14px;  --lh-sm:   20px;
   --text-base: 16px;  --lh-base: 24px;
@@ -100,9 +100,7 @@
   --text-5xl:  48px;  --lh-5xl:  48px;
   --text-6xl:  60px;  --lh-6xl:  60px;
   --text-7xl:  72px;  --lh-7xl:  72px;
-  --text-8xl:  96px;  --lh-8xl:  96px;
 
-  /* spacing (skill spec: only these) */
   --s-1:  4px;
   --s-2:  8px;
   --s-3:  12px;
@@ -115,7 +113,6 @@
   --s-20: 80px;
   --s-24: 96px;
 
-  /* radius (Tailwind only) */
   --r-sm:   8px;
   --r-lg:   16px;
   --r-full: 9999px;
@@ -144,9 +141,8 @@ button { font-family: inherit; cursor: pointer; }
 h1, h2, h3, h4 { text-wrap: balance; font-weight: 600; }
 p  { text-wrap: pretty; }
 code, .mono { font-family: "Geist Mono", ui-monospace, monospace; }
-::selection { background: rgba(255, 122, 69, 0.28); color: var(--ink); }
+::selection { background: rgba(45, 212, 191, 0.28); color: var(--ink); }
 
-/* grain overlay (Linear/Vercel cohesion pattern) */
 .grain {
   position: fixed;
   inset: 0;
@@ -216,7 +212,7 @@ nav .wrap {
 .btn-fill:hover { background: var(--accent-hover); }
 .btn-line { background: transparent; color: var(--ink); border-color: var(--line-strong); }
 .btn-line:hover { border-color: var(--mute); background: rgba(255,255,255,0.04); }
-.btn .iconify-icon { font-size: 16px; }
+.btn .iconify-icon { font-size: var(--text-base); }
 
 /* ============ HERO ============ */
 .hero {
@@ -237,7 +233,7 @@ nav .wrap {
   align-items: center;
   gap: var(--s-2);
 }
-.hero-kicker .iconify-icon { color: var(--accent); font-size: 14px; }
+.hero-kicker .iconify-icon { color: var(--accent); font-size: var(--text-sm); }
 .hero h1 {
   font-size: var(--text-6xl);
   line-height: var(--lh-6xl);
@@ -286,7 +282,7 @@ nav .wrap {
 .proof-line { font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--mute); }
 .proof-line strong { color: var(--ink); font-weight: 500; }
 
-/* ============ DEMO SECTION ============ */
+/* ============ DEMO SECTION (click-to-interact overlay) ============ */
 .demo-section {
   padding: 0 0 var(--s-24);
   position: relative;
@@ -301,6 +297,7 @@ nav .wrap {
   overflow: hidden;
   background: var(--bg-band);
   box-shadow: 0 24px 48px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02);
+  position: relative;
 }
 .demo-chrome {
   display: flex;
@@ -311,7 +308,7 @@ nav .wrap {
   background: var(--bg-elev);
   border-bottom: 1px solid var(--line);
 }
-.dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot { width: var(--s-2); height: var(--s-2); border-radius: 50%; }
 .dot-red    { background: #FF5F57; }
 .dot-yellow { background: #FEBC2E; }
 .dot-green  { background: #28C840; }
@@ -322,8 +319,45 @@ nav .wrap {
   color: var(--mute);
   letter-spacing: 0.02em;
 }
-.demo-stage { aspect-ratio: 16 / 9; background: var(--bg-void); }
-.demo-stage iframe { width: 100%; height: 100%; border: 0; display: block; }
+.demo-stage {
+  aspect-ratio: 16 / 9;
+  background: var(--bg-void);
+  position: relative;
+}
+.demo-stage iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  pointer-events: none;
+}
+.demo-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  z-index: 5;
+  transition: opacity var(--t) var(--ease);
+}
+.demo-overlay.hidden { opacity: 0; pointer-events: none; }
+.demo-overlay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-6);
+  background: var(--bg-elev);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-full);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: background var(--t) var(--ease), border-color var(--t) var(--ease);
+}
+.demo-overlay-btn:hover { background: var(--bg-overlay); border-color: var(--accent); }
+.demo-overlay-btn .iconify-icon { font-size: var(--text-lg); color: var(--accent); }
 .demo-poster {
   display: none;
   flex-direction: column;
@@ -371,9 +405,7 @@ nav .wrap {
   position: relative;
   z-index: 2;
 }
-.band-warm {
-  background: var(--bg-warm);
-}
+.band-warm { background: var(--bg-warm); }
 .head { margin-bottom: var(--s-12); max-width: 640px; }
 .head h2 {
   font-size: var(--text-4xl);
@@ -401,7 +433,6 @@ nav .wrap {
 .benefit .iconify-icon {
   font-size: var(--text-2xl);
   color: var(--accent);
-  margin-top: 0;
 }
 .benefit h3 { font-size: var(--text-lg); line-height: var(--lh-lg); letter-spacing: -0.012em; margin-bottom: var(--s-2); }
 .benefit p { color: var(--mute); font-size: var(--text-base); line-height: var(--lh-base); }
@@ -412,10 +443,7 @@ nav .wrap {
   border-radius: 4px;
 }
 
-/* ============ TAGLINE (MANDATORY per landing-page skill) ============
-   - min 2 lines, max-width capped, words start 25-35% opacity
-   - per-word scroll activation as they cross the trigger
-   - transition uses custom ease, never linear fade  */
+/* ============ TAGLINE (MANDATORY per landing-page skill) ============ */
 .tagline {
   padding: var(--s-24) 0;
   background: var(--bg-warm);
@@ -480,7 +508,7 @@ nav .wrap {
 }
 .cli .c { color: var(--mute); }
 
-/* ============ THEMES GRID (replaces horizontal scroll) ============ */
+/* ============ THEMES GRID ============ */
 .themes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -553,7 +581,7 @@ nav .wrap {
   gap: var(--s-3);
   align-items: start;
 }
-.list .iconify-icon { color: var(--accent); font-size: 16px; margin-top: 4px; }
+.list .iconify-icon { color: var(--accent); font-size: var(--text-base); margin-top: var(--s-1); }
 .list strong { color: var(--ink); font-weight: 500; }
 
 /* ============ FAQ ============ */
@@ -629,7 +657,6 @@ footer a:hover { color: var(--ink); }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-/* scroll-interpolation utility (per skill) */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -650,6 +677,7 @@ footer a:hover { color: var(--ink); }
   .hero h1 { font-size: var(--text-4xl); line-height: var(--lh-4xl); }
   .hero .sub { font-size: var(--text-base); line-height: var(--lh-base); }
   .demo-stage iframe { display: none; }
+  .demo-overlay { display: none; }
   .demo-stage { aspect-ratio: auto; min-height: 240px; display: flex; align-items: stretch; padding: var(--s-6); }
   .demo-poster { display: flex; }
   .tagline p, .close h2 { font-size: var(--text-3xl); line-height: var(--lh-3xl); }
@@ -666,7 +694,6 @@ footer a:hover { color: var(--ink); }
 @media (max-width: 480px) {
   .hero { padding: var(--s-12) 0 var(--s-8); }
   .hero h1 { font-size: var(--text-3xl); line-height: var(--lh-3xl); }
-  .hero .sub { font-size: var(--text-base); line-height: var(--lh-base); }
   .wrap { padding: 0 var(--s-4); }
   .cta-row { flex-direction: column; align-items: stretch; }
   .cta-row .btn { width: 100%; }
@@ -712,8 +739,8 @@ footer a:hover { color: var(--ink); }
         <iconify-icon icon="ph:cube-transparent" aria-hidden="true"></iconify-icon>
         Local skill · MIT · no API keys
       </p>
-      <h1 class="reveal">Give your coding agent<br>a deck workflow.</h1>
-      <p class="sub reveal">A skill file for Claude Code, Cursor, Codex, Windsurf, or Aider. Pyramid Principle, color checks, HTML on disk, then PPTX or PDF. Not a slide product.</p>
+      <h1 class="reveal">A prompt can't enforce contrast.<br>A skill file can.</h1>
+      <p class="sub reveal">DeckMason is a skill file for Claude Code, Cursor, Codex, or any agent. It enforces assertion headings, 4.5:1 contrast, one idea per slide. 31 themes. PPT import. PPTX and PDF export. Runs local.</p>
       <div class="install reveal" id="install">
         <code id="cmd">npx deckmason init</code>
         <button type="button" class="install-btn" id="copy">Copy</button>
@@ -728,7 +755,7 @@ footer a:hover { color: var(--ink); }
           View the repo
         </a>
       </div>
-      <p class="proof-line reveal"><strong>31 themes</strong>, plus Kami Warm Editorial. Arrow keys move the deck. N opens notes.</p>
+      <p class="proof-line reveal">31 themes · Pyramid Principle · PPT in, PPTX out · No API keys</p>
     </div>
   </div>
 </section>
@@ -743,7 +770,13 @@ footer a:hover { color: var(--ink); }
         <span class="chrome-url">demo/example-deck.html</span>
       </div>
       <div class="demo-stage">
-        <iframe src="demo/example-deck.html" title="DeckMason Bold Signal demo deck" loading="lazy"></iframe>
+        <iframe src="demo/example-deck.html" title="DeckMason Bold Signal demo deck" loading="lazy" id="demo-iframe"></iframe>
+        <div class="demo-overlay" id="demo-overlay">
+          <button class="demo-overlay-btn" id="demo-play" type="button">
+            <iconify-icon icon="ph:play" aria-hidden="true"></iconify-icon>
+            Click to interact
+          </button>
+        </div>
         <a class="demo-poster" href="demo/example-deck.html">
           <span class="label">Bold Signal · live deck</span>
           <span class="title">Design quality is a system, not a prompt</span>
@@ -758,8 +791,8 @@ footer a:hover { color: var(--ink); }
 <section class="band" id="themes">
   <div class="wrap">
     <div class="head reveal">
-      <h2>The 31 presets, as chips.</h2>
-      <p>Dominant color on the face, accent on the bar. Four of them have a live deck. Hover the rest.</p>
+      <h2>31 themes. Pick with your eyes.</h2>
+      <p>Each one ships with a 60-30-10 color split, a 13-rung lightness ladder, and a saturation budget. Hover for the swatch. Four have live decks.</p>
     </div>
     <div class="themes-grid reveal" role="list">
       <a class="theme" role="listitem" href="demo/example-deck.html"><span class="sw" style="background:#1a1a1a"><i style="background:#FF5722"></i></span>Bold Signal</a>
@@ -807,7 +840,7 @@ footer a:hover { color: var(--ink); }
 <section class="band band-warm">
   <div class="wrap">
     <div class="head reveal">
-      <h2>A pasted prompt cannot keep a grid.</h2>
+      <h2>Why a skill file beats a longer prompt.</h2>
       <p>Most agent decks fail the same three ways: topic-label headings, broken contrast, five slides that weigh the same. DeckMason makes those hard rules, not reminders.</p>
     </div>
     <div class="benefits">
@@ -852,15 +885,15 @@ footer a:hover { color: var(--ink); }
 
 <section class="tagline band-warm" id="tagline" aria-label="Core claim">
   <div class="wrap">
-    <p id="tagline-text">A prompt cannot enforce contrast. A skill file can.</p>
+    <p id="tagline-text">Prompts suggest. Skills enforce.</p>
   </div>
 </section>
 
 <section class="band" id="how">
   <div class="wrap">
     <div class="head reveal">
-      <h2>Three commands. Then you talk to the agent.</h2>
-      <p>The CLI copies the skill. The agent reads SKILL.md and loads each phase file only when it reaches that phase.</p>
+      <h2>Install. Pick. Ask.</h2>
+      <p>Three commands and a conversation. The agent reads SKILL.md and loads each phase file only when it reaches that phase.</p>
     </div>
     <div class="steps">
       <article class="step reveal">
@@ -897,7 +930,7 @@ footer a:hover { color: var(--ink); }
 <section class="band band-warm">
   <div class="wrap split">
     <div class="head reveal">
-      <h2>What the agent is not allowed to skip.</h2>
+      <h2>The rules the agent cannot skip.</h2>
       <p>From SKILL.md and references/quality-guardrails.md. These are gates, not style tips.</p>
     </div>
     <ul class="list">
@@ -915,7 +948,7 @@ footer a:hover { color: var(--ink); }
 <section class="band" id="faq">
   <div class="wrap">
     <div class="head reveal">
-      <h2>Questions people actually ask.</h2>
+      <h2>Common questions.</h2>
       <p>Answers from the README, CLI, and skill files. Nothing invented for this page.</p>
     </div>
     <div class="faq">
@@ -957,8 +990,8 @@ footer a:hover { color: var(--ink); }
 
 <section class="close">
   <div class="wrap">
-    <h2 class="reveal">Point the agent at the skill. Ship the deck.</h2>
-    <p class="reveal">Clone, init, or install globally. Then ask for the presentation.</p>
+    <h2 class="reveal">Stop prompting. Start skilling.</h2>
+    <p class="reveal">Install the skill. Point your agent at SKILL.md. Ship the deck.</p>
     <div class="cta-row reveal">
       <button type="button" class="btn btn-fill install-btn">
         <iconify-icon icon="ph:copy-simple" aria-hidden="true"></iconify-icon>
@@ -1045,7 +1078,7 @@ footer a:hover { color: var(--ink); }
     }
   }
 
-  // Scroll-interpolation reveals (per skill: translateY(16px) blur(8px) opacity-0 -> in)
+  // Scroll-interpolation reveals (per skill)
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduceMotion) {
     var revealObs = new IntersectionObserver(function (entries) {
@@ -1058,6 +1091,37 @@ footer a:hover { color: var(--ink); }
     document.querySelectorAll(".reveal").forEach(function (el) { revealObs.observe(el); });
   } else {
     document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+
+  // Demo: click-to-interact overlay (fixes scroll-capture issue)
+  // iframe has pointer-events: none by default so page scroll never gets captured
+  // clicking the overlay enables pointer-events on the iframe and hides the overlay
+  var overlay = document.getElementById("demo-overlay");
+  var iframe = document.getElementById("demo-iframe");
+  var demoSection = document.getElementById("demo");
+  if (overlay && iframe) {
+    var playBtn = document.getElementById("demo-play");
+    var enableInteraction = function () {
+      iframe.style.pointerEvents = "auto";
+      overlay.classList.add("hidden");
+    };
+    if (playBtn) {
+      playBtn.addEventListener("click", function (e) { e.stopPropagation(); enableInteraction(); });
+    }
+    overlay.addEventListener("click", enableInteraction);
+
+    // Reset when scrolled away (so re-entering the section starts fresh)
+    if ("IntersectionObserver" in window) {
+      var demoObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            iframe.style.pointerEvents = "none";
+            overlay.classList.remove("hidden");
+          }
+        });
+      }, { threshold: 0 });
+      demoObs.observe(demoSection);
+    }
   }
 })();
 </script>
